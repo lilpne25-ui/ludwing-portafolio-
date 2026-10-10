@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useId, useState } from "react";
 import type { CaseStudy, Dictionary } from "@/lib/i18n";
 import { ArchitectureDiagram } from "./ArchitectureDiagram";
@@ -34,6 +35,7 @@ export function CaseStudyCard({ c, L }: { c: CaseStudy; L: Labels }) {
               {c.status.label}
             </span>
           </div>
+          <p className="case-impact">{c.impact}</p>
           <p className="summary">{c.summary}</p>
           <div className="case-block">
             <span className="eyebrow">{L.problem}</span>
@@ -52,6 +54,63 @@ export function CaseStudyCard({ c, L }: { c: CaseStudy; L: Labels }) {
           <ArchitectureDiagram diagram={c.diagram} title={`${L.diagram}: ${c.title}`} hint={L.diagramHint} />
         </div>
       </div>
+
+      <dl className="metrics" aria-label={L.results}>
+        {c.metrics.map((m) => (
+          <div className="metric" key={m.label}>
+            <dt>{m.label}</dt>
+            <dd>{m.value}</dd>
+          </div>
+        ))}
+      </dl>
+
+      {c.beforeAfter.length > 0 ? (
+        <div className="ba">
+          <span className="eyebrow">{L.beforeAfter}</span>
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">{L.task}</th>
+                <th scope="col">{L.before}</th>
+                <th scope="col">{L.after}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {c.beforeAfter.map((r) => (
+                <tr key={r.label}>
+                  <th scope="row">{r.label}</th>
+                  <td className="before">{r.before}</td>
+                  <td className="after">{r.after}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      ) : null}
+
+      {c.gallery.length > 0 ? (
+        <div className="gallery">
+          <div className="gallery-head">
+            <span className="eyebrow">{L.gallery}</span>
+            <span className="gallery-note">{c.galleryDemo ? L.galleryNoteDemo : L.galleryNote}</span>
+          </div>
+          <div className="shots" data-count={c.gallery.length}>
+            {c.gallery.map((g) => (
+              <figure className="shot" key={g.src}>
+                <a className="frame" href={g.src} target="_blank" rel="noopener">
+                  <span className="frame-bar" aria-hidden="true">
+                    <i />
+                    <i />
+                    <i />
+                  </span>
+                  <Image src={g.src} alt={g.alt} width={g.w} height={g.h} sizes="(max-width: 900px) 100vw, 760px" />
+                </a>
+                <figcaption>{g.caption}</figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
+      ) : null}
 
       <button type="button" className="case-toggle" aria-expanded={open} aria-controls={detailId} onClick={() => setOpen((v) => !v)}>
         <span>{open ? L.collapse : L.open}</span>

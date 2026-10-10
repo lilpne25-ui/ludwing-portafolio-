@@ -73,6 +73,25 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
           </div>
         </section>
 
+        <section className="impact" aria-labelledby="impact-title">
+          <div className="wrap">
+            <Reveal className="impact-head">
+              <span className="eyebrow">{t.impact.eyebrow}</span>
+              <h2 id="impact-title">{t.impact.title}</h2>
+            </Reveal>
+            <Reveal as="ul" className="impact-grid">
+              {t.impact.items.map((i) => (
+                <li className="impact-item" key={i.label}>
+                  <span className="impact-value">{i.value}</span>
+                  <span className="impact-label">{i.label}</span>
+                  <span className="impact-detail">{i.detail}</span>
+                </li>
+              ))}
+            </Reveal>
+            <p className="impact-note">{t.impact.note}</p>
+          </div>
+        </section>
+
         <section className="section" id="work" aria-labelledby="work-title">
           <div className="wrap">
             <Reveal className="section-head">

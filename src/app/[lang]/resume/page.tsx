@@ -69,7 +69,7 @@ export default async function ResumePage({ params }: { params: Promise<{ lang: s
               <h3>{c.title}</h3>
               <span className="cv-period">{c.status.label}</span>
             </div>
-            <p>{c.summary}</p>
+            <p>{c.impact}</p>
             <p className="cv-stack">{c.stack.join(" · ")}</p>
           </div>
         ))}

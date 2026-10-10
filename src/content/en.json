@@ -21,7 +21,7 @@
     "eyebrow": "Software Engineer · Backend & Enterprise Systems",
     "name": "Ludwing Valdés Reyes",
     "headline": "I build the systems between the shop floor, the office and the database.",
-    "summary": "Desktop and web software for industrial and commercial operations: SQL-backed applications, integrations with the ERPs and CAD tools a company already runs, and backend services in TypeScript and .NET.",
+    "summary": "I turn manual, error-prone processes into software that runs every day. My plant integration cut the time to load an assembly into the ERP from 9 minutes to under 1.5, with every write verified. I work in Python, C#/.NET, TypeScript and SQL, connected to the ERPs and CAD tools a company already has.",
     "ctaWork": "Explore my work",
     "ctaResume": "Download resume",
     "github": "GitHub",
@@ -57,8 +57,8 @@
   },
   "work": {
     "eyebrow": "Selected work",
-    "title": "Three systems, written up as engineering cases.",
-    "intro": "Each case explains the problem, the constraints and the decisions behind the build. Names, data and diagrams are abstracted; nothing here exposes client information or private code.",
+    "title": "Three systems in daily use, with the numbers behind them.",
+    "intro": "Each case starts with the problem and the measured result, then shows real screens and the decisions behind the build. Screens are real; company names, part codes, prices and people are blurred.",
     "labels": {
       "problem": "Problem",
       "context": "Context & constraints",
@@ -74,342 +74,183 @@
       "diagram": "Architecture",
       "diagramHint": "Select a component to see its role. Schematic with fictional data.",
       "open": "Read the case",
-      "collapse": "Collapse case"
+      "collapse": "Collapse case",
+      "results": "Results",
+      "beforeAfter": "Before and after",
+      "task": "Task",
+      "before": "Before",
+      "after": "After",
+      "gallery": "Screens",
+      "galleryNote": "Real screens. Names, codes, prices and brands are blurred.",
+      "galleryNoteDemo": "Local copy with seed data. Brand removed.",
+      "impact": "Impact"
     },
     "cases": [
       {
-        "id": "quality-system",
-        "kicker": "Desktop · Quality management",
-        "title": "Quality management system for an ISO 9001 operation",
+        "id": "cad-to-erp",
+        "kicker": "Industrial integration · In production",
+        "title": "From a CAD assembly to a bill of materials in the ERP, in one click",
         "status": {
-          "label": "Product base · Windows build",
-          "tone": "build"
-        },
-        "summary": "A desktop application that turns quality work (controlled documents, records, evidence, findings and corrective actions) into a traceable process instead of a folder tree.",
-        "stack": [
-          "Electron",
-          "React",
-          "TypeScript",
-          "SQL Server"
-        ],
-        "problem": "In a certified quality system, the hard part is not storing files. It is knowing which version of a document is current, who reviewed it, where the evidence for a requirement lives and whether a finding was actually closed. Shared folders answer none of those questions.",
-        "context": [
-          "Windows workstations on a local network, with SQL Server already part of the environment.",
-          "Users are quality and operations staff, not developers. The tool has to be obvious on day one.",
-          "Audit readiness matters more than feature count: every state change needs an owner and a history."
-        ],
-        "approach": "Model the quality cycle explicitly as Document → Review → Evidence → Finding → Closure, and make each transition a recorded event with a responsible person. Electron and React give a native-feeling Windows app; SQL Server is the system of record.",
-        "decisions": [
-          {
-            "choice": "Desktop app on Electron instead of a browser-only web app",
-            "why": "Fits a Windows fleet on a local network, can work with local files and peripherals, and ships as a single installer built from the repository.",
-            "alternative": "A hosted web app, which would add hosting and access concerns the operation did not need yet."
-          },
-          {
-            "choice": "SQL Server as the runtime database",
-            "why": "It was already present and supported in the environment, which keeps backups and operations in familiar hands.",
-            "alternative": "An embedded database, simpler to ship but harder to share and back up across users."
-          },
-          {
-            "choice": "History as data, not as file names",
-            "why": "Versions, reviews and closures are rows with timestamps and owners, so an auditor's question becomes a query.",
-            "alternative": "Version suffixes in file names, which is what the process replaces."
-          }
-        ],
-        "implemented": [
-          "Controlled documents with a current version and review state.",
-          "Records and evidence linked to the process they support.",
-          "Findings (nonconformities, risks, audit observations) tracked to closure.",
-          "A Windows build generated from the repository."
-        ],
-        "evidence": [
-          "Reproducible Windows build from source.",
-          "Status reported honestly as a product base, not a finished commercial product."
-        ],
-        "next": [
-          "Harden roles and permissions per area.",
-          "Reporting views for audit preparation."
-        ],
-        "learned": "In regulated work, the user is often the auditor who shows up six months later. Designing for that reader changed the data model more than any UI decision.",
-        "diagram": {
-          "nodes": [
-            {
-              "id": "ui",
-              "label": "Desktop UI",
-              "sub": "Electron + React",
-              "col": 0,
-              "row": 1,
-              "note": "Renderer built with React and TypeScript. Presents documents, reviews and findings as one workflow."
-            },
-            {
-              "id": "main",
-              "label": "App process",
-              "sub": "Electron main",
-              "col": 1,
-              "row": 1,
-              "note": "Owns database access and file handling, so the UI never talks to the database directly."
-            },
-            {
-              "id": "domain",
-              "label": "Quality rules",
-              "sub": "States & transitions",
-              "col": 2,
-              "row": 0,
-              "note": "Document → Review → Evidence → Finding → Closure. Each transition records who and when."
-            },
-            {
-              "id": "files",
-              "label": "File store",
-              "sub": "Controlled copies",
-              "col": 2,
-              "row": 2,
-              "note": "Attachments are referenced from records, never used as the source of truth."
-            },
-            {
-              "id": "db",
-              "label": "SQL Server",
-              "sub": "System of record",
-              "col": 3,
-              "row": 1,
-              "note": "Versions, reviews and closures stored as rows with owners and timestamps."
-            }
-          ],
-          "edges": [
-            [
-              "ui",
-              "main"
-            ],
-            [
-              "main",
-              "domain"
-            ],
-            [
-              "main",
-              "files"
-            ],
-            [
-              "domain",
-              "db"
-            ],
-            [
-              "files",
-              "db"
-            ]
-          ]
-        }
-      },
-      {
-        "id": "crm-intake",
-        "kicker": "Backend · CRM & messaging",
-        "title": "CRM with structured lead intake from WhatsApp",
-        "status": {
-          "label": "CRM implemented · AI layer planned",
+          "label": "In production · 6 workstations",
           "tone": "live"
         },
-        "summary": "A commercial CRM that follows a lead from first message to quote and after-sales, with a webhook intake that captures prospects reliably and keeps a person in charge of what gets sent.",
-        "stack": [
-          "TypeScript",
-          "Webhooks",
-          "REST APIs",
-          "Relational DB"
-        ],
-        "problem": "Leads arrived through chat and were copied by hand into spreadsheets. Messages got lost, the same customer showed up three times, and quotes were edited in place with no record of what was offered before.",
-        "context": [
-          "Messaging platforms retry webhook deliveries, so the same event can arrive more than once.",
-          "Quotes carry visible, hidden and prorated costs. A sent revision must never change after the fact.",
-          "Uploaded images and PDFs need limits and validation before they are stored."
-        ],
-        "approach": "Treat every incoming message as an event: acknowledge fast, deduplicate by the provider's message identifier, normalize it into a structured lead and hand it to a person for review. Inside the CRM, quotes are immutable revisions attached to a project and a customer.",
-        "decisions": [
+        "impact": "Took a manual, error-prone transfer between engineering and the ERP and made it automatic, validated and about 6× faster end to end.",
+        "summary": "A Windows application for a manufacturing plant that reads the real assembly structure from SolidWorks and PDM, normalizes it, validates it and loads the bill of materials into the plant's ERP, then emails the team exactly what changed.",
+        "metrics": [
           {
-            "choice": "A deterministic intake flow instead of a generative agent",
-            "why": "Capture, classification and follow-up need to be predictable and auditable. The generative layer is planned and kept separate, behind human review.",
-            "alternative": "An LLM agent answering customers directly, which is not what this system does today."
+            "value": "5:07 → 0:30",
+            "label": "Saving ~200 BOM rows to the ERP"
           },
           {
-            "choice": "Idempotent processing keyed on the message ID",
-            "why": "Retries become harmless: a repeated delivery finds the existing record and stops.",
-            "alternative": "Best-effort inserts, which is how duplicate customers were created."
+            "value": "9:08 → 1:28",
+            "label": "Automated flow per assembly, all stages"
           },
           {
-            "choice": "Immutable quote revisions",
-            "why": "What a customer was offered on a given day stays answerable. A change creates a new revision.",
-            "alternative": "Editable quotes, simpler but impossible to audit."
+            "value": "1,737",
+            "label": "Automated tests (pytest)"
+          },
+          {
+            "value": "6",
+            "label": "Workstations reporting central telemetry"
           }
         ],
-        "implemented": [
-          "Pipeline from prospect to customer, project, quote, follow-up and after-sales.",
-          "Quote engine with catalog or free-form lines and visible, hidden or prorated costs.",
-          "Secure storage for images and PDFs: size limits, MIME validation and protected URLs.",
-          "Webhook reception with structured lead capture and duplicate control."
+        "beforeAfter": [
+          {
+            "label": "BOM capture in the ERP",
+            "before": "Typed row by row from Excel",
+            "after": "Automatic, with a check after every write"
+          },
+          {
+            "label": "Duplicates across configurations",
+            "before": "Found and fixed by hand",
+            "after": "Summed automatically; conflicts are flagged"
+          },
+          {
+            "label": "Telling the team what changed",
+            "before": "Email written by hand",
+            "after": "Generated: new, updated and removed parts"
+          },
+          {
+            "label": "Setting up a new PC",
+            "before": "Configured machine by machine",
+            "after": "Copy the folder and open it"
+          }
         ],
-        "evidence": [
-          "Delivered in closed phases: domain, customer workspace, revisions, follow-up, quote engine and secure assets.",
-          "Feature status tracked as implemented, pilot or roadmap so planned work is never presented as shipped."
-        ],
-        "next": [
-          "Assistive AI for drafting and classification, always reviewed by a person.",
-          "Delivery and response metrics on the intake queue."
-        ],
-        "learned": "The reliability of an integration is decided at the boundary. Once deduplication and acknowledgement were right, everything downstream got simpler.",
-        "diagram": {
-          "nodes": [
-            {
-              "id": "chat",
-              "label": "Messaging provider",
-              "sub": "Webhook",
-              "col": 0,
-              "row": 1,
-              "note": "Delivers message events. Retries are expected, so the receiver must be idempotent."
-            },
-            {
-              "id": "rx",
-              "label": "Receiver",
-              "sub": "Ack fast",
-              "col": 1,
-              "row": 1,
-              "note": "Validates the request, acknowledges quickly and passes the event on for processing."
-            },
-            {
-              "id": "dedupe",
-              "label": "Dedupe",
-              "sub": "Message ID key",
-              "col": 2,
-              "row": 0,
-              "note": "A repeated delivery with the same ID is detected and stops here. Example: msg_7f3a (fictional)."
-            },
-            {
-              "id": "lead",
-              "label": "Lead record",
-              "sub": "Normalized",
-              "col": 2,
-              "row": 2,
-              "note": "Name, channel, interest and history in a structured record instead of a chat transcript."
-            },
-            {
-              "id": "review",
-              "label": "Human review",
-              "sub": "Before sending",
-              "col": 3,
-              "row": 1,
-              "note": "Automation captures and organizes. A person reviews quotes and replies before they go out."
-            }
-          ],
-          "edges": [
-            [
-              "chat",
-              "rx"
-            ],
-            [
-              "rx",
-              "dedupe"
-            ],
-            [
-              "dedupe",
-              "lead"
-            ],
-            [
-              "lead",
-              "review"
-            ]
-          ]
-        }
-      },
-      {
-        "id": "engineering-bridge",
-        "kicker": "Desktop · Industrial integration",
-        "title": "Costing and engineering bridge for a manufacturing plant",
-        "status": {
-          "label": "Production build verified",
-          "tone": "build"
-        },
-        "summary": "A Windows application that connects CAD data, an existing costing database and the plant's ERP, so bills of materials stop being retyped between systems.",
         "stack": [
           "Python",
           "PySide6",
-          "pyodbc",
-          "C# / .NET 8"
+          "C# / .NET 8",
+          "SolidWorks API",
+          "Pervasive PSQL",
+          "SQL Server",
+          "pytest"
         ],
-        "problem": "Engineering data lived in the CAD and PDM tools, costs and supplier rules in a legacy database, and the ERP expected its own bill-of-materials format. Moving data between them was manual, slow and a reliable source of errors.",
+        "problem": "Every machine engineering designs is a SolidWorks assembly with dozens or hundreds of parts. Purchasing, warehouse and production need that structure as a bill of materials in the ERP. That step was manual: review each part, copy it to Excel, fix duplicates by hand, type it into the ERP and write an email describing the changes. It was slow, error-prone and left no trace of what had changed.",
         "context": [
-          "The plant already runs SolidWorks / PDM, a Pervasive (Actian) database and Global Shop as ERP. Replacing any of them was out of scope.",
-          "Two different teams use it: logistics and engineering.",
-          "It has to run as a portable Windows executable on standard workstations."
+          "The plant already runs SolidWorks with PDM, a Pervasive (Actian) database behind the ERP and SQL Server behind PDM. Replacing any of them was out of scope.",
+          "Each workstation had the PDM vault in a different path and its own configuration.",
+          "Users keep their own SolidWorks session open; the tool must never interfere with it.",
+          "A bad write to the ERP is expensive to undo, so correctness comes before speed."
         ],
-        "approach": "A layered desktop app: a PySide6 interface, a validation and enrichment engine in the middle, ODBC access to the legacy database, and a .NET component for the CAD side. The output is a bill of materials in the format the ERP imports.",
+        "approach": "A layered desktop app. A C# .NET 8 engine drives SolidWorks through COM and returns a canonical ledger of every document with its identity and version. Python services normalize parts, apply engineering's duplicate rule, complete material and stock size, and pass three quality gates before anything is written. Writes to the ERP are batched and verified afterwards; the change email compares against what was already in the ERP.",
         "decisions": [
           {
-            "choice": "Integrate with the existing systems instead of replacing them",
-            "why": "The plant's tools work and people know them. The gain was in removing the manual steps between them.",
-            "alternative": "A new all-in-one platform, with a migration cost the operation could not justify."
+            "choice": "Fail-closed publishing",
+            "why": "Every run writes a candidate first. Only when the CAD structure, enrichment and ERP-readiness gates all pass is it promoted to final. If something fails, the screen shows the exact cause and nothing is written.",
+            "alternative": "Best-effort export with manual review afterwards, which is how errors reached the ERP before."
           },
           {
-            "choice": "Python for the app, C#/.NET 8 for the CAD layer",
-            "why": "Python and PySide6 move fast for data-heavy desktop work; the CAD ecosystem is most at home in .NET.",
-            "alternative": "A single language for everything, at the cost of fighting one of the two ecosystems."
+            "choice": "Measure every stage before optimizing",
+            "why": "Each stage logs machine, version, status and duration to a shared table. The 5-minute save turned out to be unindexed lookups caused by driver padding; batched preloads of 200 parts and exact-key queries cut each lookup from 0.14–0.36 s to 2–27 ms without removing a single verification.",
+            "alternative": "Guessing at bottlenecks or dropping the post-write checks to save time."
           },
           {
-            "choice": "Validation scripts and smoke tests gate every release",
-            "why": "A portable executable on plant workstations is hard to patch, so problems need to be caught before it ships.",
-            "alternative": "Manual checks on each machine after installation."
+            "choice": "Never touch the user's SolidWorks session",
+            "why": "The engine only closes processes it started: it checks PIDs against pre-existing ones, holds an exclusive mutex and fails closed if it cannot enumerate processes.",
+            "alternative": "Reusing or killing whatever SolidWorks instance is open, which risks losing someone's work."
+          },
+          {
+            "choice": "No passwords handed out per machine",
+            "why": "Only access to a shared database travels with the build. ERP and PDM credentials are fetched on first run and stored encrypted with Windows DPAPI at machine level, so rotating one updates every station.",
+            "alternative": "Config files with credentials on each PC."
           }
         ],
         "implemented": [
-          "Desktop app for logistics and engineering workflows.",
-          "Read access to costs, suppliers and rules through ODBC.",
-          "CAD / PDM data extraction for bills of materials.",
-          "Bill-of-materials output in the ERP's import format."
+          "Guided flow: Search → Generate → Save → Email, with the ERP target always visible.",
+          "PDM vault discovery from the Windows registry on any PC and path.",
+          "C# CAD engine with a canonical ledger (part number, configuration, document ID, version).",
+          "Batched ERP writes for structure, new parts and inventory, each verified afterwards.",
+          "Automatic change email: new, updated and removed against the ERP.",
+          "A second workspace for logistics: material catalog, densities and current prices."
         ],
         "evidence": [
-          "Production build verified on the target Windows environment.",
-          "Validation scripts and smoke tests run for each portable release."
+          "1,737 automated tests with pytest; CAD and PDM end-to-end tests run on a dedicated machine.",
+          "Stage timings measured on real assemblies before and after each optimization.",
+          "Atomic failure reports per run, so a blocked run always explains itself.",
+          "About 179k lines of Python (tests included) and 14k of C#."
         ],
         "next": [
-          "Broaden ERP coverage beyond bill-of-materials import.",
-          "Packaging and update flow for multiple workstations."
+          "Keep a warm SolidWorks instance between runs to cut startup time, tested on one PC first.",
+          "Split the largest UI controllers into smaller modules."
         ],
-        "learned": "Legacy systems are constraints, not obstacles. The most valuable code was the validation layer that refused bad data before it reached the ERP.",
+        "learned": "Speed came from measuring, not guessing. Every second we gained was found in a timing table, and none of it came from removing a validation.",
         "diagram": {
           "nodes": [
             {
               "id": "cad",
-              "label": "CAD / PDM",
-              "sub": "BOM source",
+              "label": "SolidWorks + PDM",
+              "sub": "Assembly source",
               "col": 0,
-              "row": 0,
-              "note": "Parts and structure come from engineering's CAD and PDM tools."
-            },
-            {
-              "id": "legacy",
-              "label": "Costing DB",
-              "sub": "ODBC",
-              "col": 0,
-              "row": 2,
-              "note": "Costs, suppliers and rules read from the existing legacy database."
+              "row": 1,
+              "note": "The engineer types the assembly code. The vault is found automatically on any workstation."
             },
             {
               "id": "engine",
-              "label": "Validation engine",
-              "sub": "Validate · enrich · resolve",
+              "label": "CAD engine",
+              "sub": "C# .NET 8 · COM",
               "col": 1,
               "row": 1,
-              "note": "Rejects incomplete or inconsistent rows before anything is exported."
+              "note": "Walks the real structure (configurations, suppressed parts, BOM exclusions) and returns a canonical ledger."
             },
             {
-              "id": "app",
-              "label": "Desktop app",
-              "sub": "PySide6",
+              "id": "normalize",
+              "label": "Normalize & cost",
+              "sub": "Python services",
+              "col": 2,
+              "row": 0,
+              "note": "Applies the duplicate rule, completes material and stock size, prices from the catalog."
+            },
+            {
+              "id": "gate",
+              "label": "Quality gates",
+              "sub": "Fail-closed",
               "col": 2,
               "row": 1,
-              "note": "Two workspaces: logistics and engineering."
+              "note": "CAD structure, enrichment and ERP readiness must all pass before anything is published."
+            },
+            {
+              "id": "blocked",
+              "label": "Blocked run",
+              "sub": "Exact cause shown",
+              "col": 2,
+              "row": 2,
+              "note": "Nothing is written. The report names the CAD, PDM or BOM cause and keeps verified counts."
             },
             {
               "id": "erp",
-              "label": "ERP import",
-              "sub": "BOM format",
+              "label": "ERP load",
+              "sub": "Batched · verified",
               "col": 3,
-              "row": 1,
-              "note": "Produces the bill of materials in the format the ERP expects."
+              "row": 0,
+              "note": "Structure, new parts and inventory written in batches and read back to confirm. Example part: B18.3-M6x10 (illustrative)."
+            },
+            {
+              "id": "mail",
+              "label": "Change email",
+              "sub": "Diff vs. the ERP",
+              "col": 3,
+              "row": 2,
+              "note": "Compares against what the ERP already had and tells purchasing, warehouse and production."
             }
           ],
           "edges": [
@@ -418,19 +259,369 @@
               "engine"
             ],
             [
-              "legacy",
+              "engine",
+              "normalize"
+            ],
+            [
+              "normalize",
+              "gate"
+            ],
+            [
+              "gate",
+              "erp"
+            ],
+            [
+              "gate",
+              "blocked"
+            ],
+            [
+              "erp",
+              "mail"
+            ]
+          ]
+        },
+        "gallery": [
+          {
+            "src": "/work/plant-bom.webp",
+            "w": 1600,
+            "h": 978,
+            "alt": "Engineering workspace: four-step flow and the bill of materials read from a SolidWorks assembly, with part numbers, quantities, levels and manufacturers.",
+            "caption": "Bill of materials read from the CAD assembly, ready to validate."
+          },
+          {
+            "src": "/work/plant-gate.webp",
+            "w": 1280,
+            "h": 720,
+            "alt": "Run in progress at 60% reading 160 components, next to a red message blocking the ERP save because a required weight is missing.",
+            "caption": "Fail-closed: the save is blocked and the exact cause is shown."
+          },
+          {
+            "src": "/work/plant-catalog.webp",
+            "w": 1600,
+            "h": 978,
+            "alt": "Logistics workspace: material catalog with shape, size, density, validity and status, plus a detail panel.",
+            "caption": "Logistics catalog: materials, densities and current prices."
+          }
+        ],
+        "galleryDemo": false
+      },
+      {
+        "id": "crm",
+        "kicker": "Web platform · Commercial operations",
+        "title": "A commercial CRM from first contact to after-sales",
+        "status": {
+          "label": "In operation · WhatsApp channel in pilot",
+          "tone": "live"
+        },
+        "impact": "Gave a B2B installation business one traceable flow from lead to quote, project and warranty, with web leads arriving automatically and no quote leaving without a person's review.",
+        "summary": "A Next.js and Prisma CRM that connects prospects, a guided quote builder, a price catalog, projects, installations and warranties, plus an authenticated web-to-CRM intake that is idempotent by design.",
+        "metrics": [
+          {
+            "value": "4 steps",
+            "label": "Guided quote: client, solution, line items, review"
+          },
+          {
+            "value": "0",
+            "label": "Quotes sent without human review, by rule"
+          },
+          {
+            "value": "1 event ID",
+            "label": "Retries of the same web form never create a second lead"
+          }
+        ],
+        "beforeAfter": [],
+        "stack": [
+          "Next.js",
+          "React",
+          "TypeScript",
+          "Prisma",
+          "PostgreSQL",
+          "Zod",
+          "Vitest"
+        ],
+        "problem": "The business sells and installs projects. Leads, quotes, installations and warranties lived in different places, and website forms had to reach the sales team without duplicates and without anything automatic ever sending a price to a customer.",
+        "context": [
+          "Website form providers retry deliveries, so the same submission can arrive more than once.",
+          "Quotes combine catalog prices, material multipliers and installation; they must stay under a salesperson's control.",
+          "Different roles see different things: sales, operations and administrators.",
+          "Deleting a prospect affects quotes, projects and warranties, so it must be deliberate and audited."
+        ],
+        "approach": "Model the commercial chain explicitly (prospect → quote → project → warranty) on a relational schema with Prisma. Web leads enter through a dedicated webhook that authenticates, validates, normalizes and deduplicates, marks the origin as WEB and stops at human review.",
+        "decisions": [
+          {
+            "choice": "Automation captures, people quote",
+            "why": "Forms, integrations and the chat flow can register and organize opportunities, but a quote is always prepared, reviewed and sent by an authorized person.",
+            "alternative": "Auto-generated quotes from form data, fast but risky for pricing and reputation."
+          },
+          {
+            "choice": "Idempotent web intake keyed on an event ID",
+            "why": "A retried delivery finds the existing record and stops, so duplicates never reach the pipeline.",
+            "alternative": "Plain inserts, which create a new lead on every retry."
+          },
+          {
+            "choice": "A deterministic chat flow before any generative AI",
+            "why": "The WhatsApp module follows a rule-based conversation engine and is kept as a technical pilot, not presented as a production channel.",
+            "alternative": "An LLM answering customers directly."
+          },
+          {
+            "choice": "Granular permissions and audited destructive actions",
+            "why": "Roles start from templates and can be tuned per user. Cascade deletion requires permission, shows its impact, asks for confirmation and keeps the audit trail.",
+            "alternative": "A single admin role and soft rules."
+          }
+        ],
+        "implemented": [
+          "Dashboard with live indicators, alerts and upcoming actions.",
+          "Prospects with owner, status, estimated value and next action.",
+          "Guided 4-step quote builder with drafts, persistent folio, PDF and commercial states.",
+          "Price catalog with base prices, material multipliers and change history.",
+          "Projects and installations with owner, progress, risk and evidence; warranties and maintenance.",
+          "Users with role templates and per-user permissions; passwords hashed with scrypt."
+        ],
+        "evidence": [
+          "Unit tests with Vitest for the quote calculator, authentication, web intake and conversation engine.",
+          "Lint, tests and build required before every change.",
+          "Running on the company's server; screenshots on this page come from a local copy with seed data."
+        ],
+        "next": [
+          "Move WhatsApp to the official Business API before calling it a production channel.",
+          "Global search and real notifications."
+        ],
+        "learned": "The reliability of an integration is decided at its boundary. Once authentication, idempotency and the human-review rule were fixed there, the rest of the CRM could stay simple.",
+        "diagram": {
+          "nodes": [
+            {
+              "id": "form",
+              "label": "Website form",
+              "sub": "Retries expected",
+              "col": 0,
+              "row": 1,
+              "note": "Sends each submission with an event ID that stays the same on retries."
+            },
+            {
+              "id": "hook",
+              "label": "Webhook",
+              "sub": "Key in header",
+              "col": 1,
+              "row": 1,
+              "note": "Authenticates with a private key in a header, never in the URL or the page."
+            },
+            {
+              "id": "validate",
+              "label": "Validate & normalize",
+              "sub": "Schema · size limit",
+              "col": 2,
+              "row": 0,
+              "note": "Rejects malformed or oversized payloads and normalizes names, phones and locations."
+            },
+            {
+              "id": "dedupe",
+              "label": "Deduplicate",
+              "sub": "Event ID",
+              "col": 2,
+              "row": 2,
+              "note": "A repeated event finds the existing lead and stops. Example: evt_000123 (fictional)."
+            },
+            {
+              "id": "review",
+              "label": "Human review",
+              "sub": "Origin: WEB",
+              "col": 3,
+              "row": 1,
+              "note": "The lead lands in the pipeline for a salesperson. No quote is created automatically."
+            }
+          ],
+          "edges": [
+            [
+              "form",
+              "hook"
+            ],
+            [
+              "hook",
+              "validate"
+            ],
+            [
+              "hook",
+              "dedupe"
+            ],
+            [
+              "validate",
+              "review"
+            ],
+            [
+              "dedupe",
+              "review"
+            ]
+          ]
+        },
+        "gallery": [
+          {
+            "src": "/work/crm-dashboard.webp",
+            "w": 1600,
+            "h": 1000,
+            "alt": "CRM dashboard with indicators for open prospects, open quotes, quoted value, accepted sales, active projects, installations, risk and expiring warranties.",
+            "caption": "Dashboard: the whole commercial chain on one screen."
+          },
+          {
+            "src": "/work/crm-cotizador.webp",
+            "w": 1600,
+            "h": 1000,
+            "alt": "Guided quote builder at step 1 of 4 with pending fields, next to a live preview of the quote with line items and conditions.",
+            "caption": "Guided 4-step quote with live preview."
+          }
+        ],
+        "galleryDemo": true
+      },
+      {
+        "id": "attendance",
+        "kicker": "Enterprise .NET · HR operations",
+        "title": "Attendance and overtime, from biometric clocks to HR reports",
+        "status": {
+          "label": "In operation",
+          "tone": "live"
+        },
+        "impact": "Replaced manual handling of clock data with a synchronized database and rule-based overtime, so HR gets period reports in its own template instead of rebuilding them by hand.",
+        "summary": "A layered .NET 8 system that syncs employees and punches from ZKTeco clocks into SQL Server, interprets noisy in/out records, calculates hours and overtime by schedule and generates Excel and PDF reports for HR.",
+        "metrics": [
+          {
+            "value": "7",
+            "label": "Projects in one .NET 8 solution, split by layer"
+          },
+          {
+            "value": "10 min",
+            "label": "Scheduled sync windows from the clocks"
+          },
+          {
+            "value": "Excel + PDF",
+            "label": "Reports in the company's own template"
+          }
+        ],
+        "beforeAfter": [],
+        "stack": [
+          "C#",
+          ".NET 8",
+          "WinForms",
+          "SQL Server",
+          "ZKTeco SDK",
+          "ClosedXML"
+        ],
+        "problem": "Attendance came from biometric clocks whose raw punches are noisy: entries recorded as exits, duplicates, missing marks. HR needed worked hours and authorized overtime per schedule, in its own report format, and some data had to reach the ERP database too.",
+        "context": [
+          "Clock data is not trustworthy as-is; in/out modes are often inverted.",
+          "Overtime rules depend on each schedule and on per-employee authorization.",
+          "Reports must keep HR's existing Excel template.",
+          "Credentials and site settings must stay out of the repository."
+        ],
+        "approach": "A clean split into Domain, Application and Infrastructure, with a WinForms desktop for daily operation and a separate sync agent. Punches land in SQL Server with sync state; the attendance engine rebuilds shifts and applies schedule rules; reports render from the corporate template.",
+        "decisions": [
+          {
+            "choice": "A decoupled sync agent",
+            "why": "Reading the clocks runs on its own schedule and does not depend on someone having the desktop app open.",
+            "alternative": "Syncing only when HR opens the app."
+          },
+          {
+            "choice": "Rules by schedule, not hard-coded hours",
+            "why": "Overtime starts at different times per schedule and requires authorization per employee, so it lives in configuration.",
+            "alternative": "One global overtime threshold."
+          },
+          {
+            "choice": "ERP mirror with preview and locks",
+            "why": "Writing attendance into the ERP database is optional and always previewed first.",
+            "alternative": "Direct writes with no preview."
+          }
+        ],
+        "implemented": [
+          "Employee and punch sync from ZKTeco clocks to SQL Server, with automatic schema bootstrap.",
+          "Shift reconstruction that handles inverted and noisy in/out records.",
+          "Worked hours and overtime with per-employee authorization and per-schedule rules.",
+          "Admin tools to edit employee data, review history and run syncs.",
+          "Excel and PDF reports from the corporate template; web and API layer with role policies in progress."
+        ],
+        "evidence": [
+          "Executive report documenting the real scope in operation.",
+          "Feature flags allow rolling back a single module without stopping the platform.",
+          "Settings in versioned files are safe defaults; secrets live in local files and environment variables."
+        ],
+        "next": [
+          "Finish parity between the web and desktop versions.",
+          "Analytics on attendance patterns for HR."
+        ],
+        "learned": "Hardware data needs an interpretation layer. Treating raw punches as facts would have pushed every clock error straight into payroll.",
+        "diagram": {
+          "nodes": [
+            {
+              "id": "clock",
+              "label": "Biometric clocks",
+              "sub": "ZKTeco",
+              "col": 0,
+              "row": 1,
+              "note": "Raw punches with in/out modes that are often inverted or duplicated."
+            },
+            {
+              "id": "agent",
+              "label": "Sync agent",
+              "sub": "Scheduled windows",
+              "col": 1,
+              "row": 1,
+              "note": "Pulls employees and punches on a schedule and records sync state."
+            },
+            {
+              "id": "sql",
+              "label": "SQL Server",
+              "sub": "Employees · punches",
+              "col": 2,
+              "row": 0,
+              "note": "System of record for attendance, created automatically on first run."
+            },
+            {
+              "id": "engine",
+              "label": "Attendance engine",
+              "sub": "Shifts · overtime",
+              "col": 2,
+              "row": 2,
+              "note": "Rebuilds shifts and applies schedule rules and overtime authorization."
+            },
+            {
+              "id": "reports",
+              "label": "HR reports",
+              "sub": "Excel · PDF",
+              "col": 3,
+              "row": 0,
+              "note": "Rendered from the company's own template."
+            },
+            {
+              "id": "mirror",
+              "label": "ERP mirror",
+              "sub": "Preview · locks",
+              "col": 3,
+              "row": 2,
+              "note": "Optional copy to the ERP database, always previewed first."
+            }
+          ],
+          "edges": [
+            [
+              "clock",
+              "agent"
+            ],
+            [
+              "agent",
+              "sql"
+            ],
+            [
+              "sql",
               "engine"
             ],
             [
               "engine",
-              "app"
+              "reports"
             ],
             [
-              "app",
-              "erp"
+              "engine",
+              "mirror"
             ]
           ]
-        }
+        },
+        "gallery": [],
+        "galleryDemo": false
       }
     ],
     "other": {
@@ -438,33 +629,34 @@
       "intro": "Smaller or earlier-stage work, listed with its real status.",
       "items": [
         {
+          "title": "Quality management system (ISO 9001)",
+          "status": "Demo · technical pilot",
+          "text": "Electron, React and TypeScript on SQL Server, moved from SQLite with 18 versioned migrations and a data migration script. Document control with permissions, signatures, an audit log and workflow emails, plus a records engine where a new record type is configuration, not a new screen. Several modules are still interface prototypes; an internal readiness audit set the hardening plan before any production use.",
+          "stack": [
+            "Electron",
+            "React",
+            "SQL Server"
+          ]
+        },
+        {
+          "title": "Real-estate operations prototype",
+          "status": "Commercial prototype",
+          "text": "A hexagonal monorepo: domain, application and infrastructure packages with layer rules enforced by dependency-cruiser, 10 architecture decision records, money stored in integer cents, idempotent payments, 29 domain tests and Playwright end-to-end checks with axe. An honesty matrix separates what works, what is simulated and what is proposed.",
+          "stack": [
+            "Next.js",
+            "TypeScript",
+            "Zod",
+            "Playwright"
+          ]
+        },
+        {
           "title": "Point of sale on Odoo Community",
           "status": "Pilot candidate",
-          "text": "A modular layer over Odoo Community 19: mobile scanner with temporary pairing, hashed tokens, rate limiting and acknowledged events; an authenticated owner PWA. Fiscal invoicing runs in simulation and is not yet connected to a production provider.",
+          "text": "A modular layer over Odoo Community 19: mobile scanner with temporary pairing, hashed tokens, rate limiting and acknowledged events, and an authenticated owner PWA. Fiscal invoicing runs in simulation.",
           "stack": [
             "Odoo",
             "PWA",
             "Python"
-          ]
-        },
-        {
-          "title": "Technical catalog backend",
-          "status": "Foundations",
-          "text": "Catalog service built on Next.js, PostgreSQL and Prisma, with authentication, role-based access and a hexagonal structure that keeps domain rules apart from frameworks. The full quoting module is not finished.",
-          "stack": [
-            "Next.js",
-            "PostgreSQL",
-            "Prisma"
-          ]
-        },
-        {
-          "title": "Attendance and operational reporting",
-          "status": "Internal tools",
-          "text": ".NET applications and SQL databases for attendance control, devices and operational reports in an industrial setting.",
-          "stack": [
-            ".NET",
-            "WinForms",
-            "SQL Server"
           ]
         }
       ]
@@ -517,6 +709,8 @@
         "period": null,
         "summary": "Technology support and infrastructure for a manufacturing operation working under ISO 9001.",
         "points": [
+          "Designed, built and runs the CAD-to-ERP integration used by engineering and logistics on 6 workstations (see the first case).",
+          "Built the attendance and overtime system that syncs biometric clocks with SQL Server and HR reports.",
           "Technical support across hardware, software and networks.",
           "Backups and information recovery; monitoring of network and servers.",
           "Installation, configuration and preventive maintenance of equipment and systems, including the network addressing plan.",
@@ -600,5 +794,32 @@
     "selected": "Selected work",
     "skills": "Skills",
     "links": "Links"
+  },
+  "impact": {
+    "eyebrow": "Impact, measured",
+    "title": "Numbers from systems running today.",
+    "note": "Measured on real runs of the CAD-to-ERP integration. No estimated savings, no invented percentages.",
+    "items": [
+      {
+        "value": "10×",
+        "label": "faster ERP load",
+        "detail": "5:07 → 0:30 for about 200 bill-of-materials rows"
+      },
+      {
+        "value": "−84%",
+        "label": "time per assembly",
+        "detail": "9:08 → 1:28 across all automated stages"
+      },
+      {
+        "value": "1,737",
+        "label": "automated tests",
+        "detail": "guarding every release of the plant integration"
+      },
+      {
+        "value": "3",
+        "label": "systems in daily use",
+        "detail": "plant integration, attendance and CRM"
+      }
+    ]
   }
 }
