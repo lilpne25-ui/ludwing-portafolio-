@@ -1,7 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { useId, useState } from "react";
+import { useId, useState, type CSSProperties } from "react";
+import { CountUp } from "./CountUp";
 import type { CaseStudy, Dictionary } from "@/lib/i18n";
 import { ArchitectureDiagram } from "./ArchitectureDiagram";
 
@@ -36,18 +37,39 @@ export function CaseStudyCard({ c, L }: { c: CaseStudy; L: Labels }) {
             </span>
           </div>
           <p className="case-impact">{c.impact}</p>
-          <p className="summary">{c.summary}</p>
-          <div className="case-block">
-            <span className="eyebrow">{L.problem}</span>
-            <p>{c.problem}</p>
+          <div className="pane pane-business">
+            <div className="case-block">
+              <span className="eyebrow">{L.plain}</span>
+              <p className="plain">{c.plain}</p>
+            </div>
+            <div className="case-block">
+              <span className="eyebrow">{L.steps}</span>
+              <ol className="steps">
+                {c.steps.map((s, i) => (
+                  <li key={s} style={{ "--i": i } as CSSProperties}>
+                    <span className="n" aria-hidden="true">
+                      {i + 1}
+                    </span>
+                    <span>{s}</span>
+                  </li>
+                ))}
+              </ol>
+            </div>
           </div>
-          <ul className="chips" aria-label={L.stack} style={{ listStyle: "none" }}>
-            {c.stack.map((s) => (
-              <li key={s} className="chip">
-                {s}
-              </li>
-            ))}
-          </ul>
+          <div className="pane pane-tech">
+            <p className="summary">{c.summary}</p>
+            <div className="case-block">
+              <span className="eyebrow">{L.problem}</span>
+              <p>{c.problem}</p>
+            </div>
+            <ul className="chips" aria-label={L.stack} style={{ listStyle: "none" }}>
+              {c.stack.map((s) => (
+                <li key={s} className="chip">
+                  {s}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
         <div className="case-diagram">
           <span className="eyebrow">{L.diagram}</span>
@@ -59,7 +81,9 @@ export function CaseStudyCard({ c, L }: { c: CaseStudy; L: Labels }) {
         {c.metrics.map((m) => (
           <div className="metric" key={m.label}>
             <dt>{m.label}</dt>
-            <dd>{m.value}</dd>
+            <dd>
+              <CountUp value={m.value} />
+            </dd>
           </div>
         ))}
       </dl>

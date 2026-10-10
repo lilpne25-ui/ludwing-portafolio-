@@ -83,7 +83,12 @@
       "gallery": "Pantallas",
       "galleryNote": "Pantallas reales. Nombres, códigos, precios y marcas difuminados.",
       "galleryNoteDemo": "Copia local con datos de prueba. Marca retirada.",
-      "impact": "Impacto"
+      "impact": "Impacto",
+      "view": "Leer como",
+      "viewBusiness": "Negocio",
+      "viewTech": "Técnico",
+      "plain": "En palabras simples",
+      "steps": "Cómo funciona"
     },
     "cases": [
       {
@@ -303,7 +308,14 @@
             "caption": "Catálogo de logística: materiales, densidades y precios vigentes."
           }
         ],
-        "galleryDemo": false
+        "galleryDemo": false,
+        "plain": "Piénsalo como un traductor entre quienes diseñan las máquinas y quienes las compran y fabrican. Ingeniería dibuja una máquina en la computadora; este sistema lee ese dibujo, arma la lista de cada tornillo y placa que necesita, la revisa y la carga en el sistema de compras de la empresa. Lo que tomaba unos 9 minutos de captura cuidadosa por máquina ahora toma como minuto y medio, y el sistema se niega a guardar algo que no cuadre.",
+        "steps": [
+          "El ingeniero escribe el código de la máquina",
+          "El sistema lee el diseño 3D y lista cada pieza",
+          "Revisa la lista y se detiene si falta algo",
+          "Carga la lista en el ERP y avisa por correo qué cambió"
+        ]
       },
       {
         "id": "crm",
@@ -469,7 +481,14 @@
             "caption": "Cotización guiada en 4 pasos con vista previa en vivo."
           }
         ],
-        "galleryDemo": true
+        "galleryDemo": true,
+        "plain": "Un solo lugar donde el equipo de ventas ve a cada cliente, desde el primer mensaje hasta la visita de postventa. Cuando alguien llena el formulario del sitio web, el prospecto aparece solo, y una sola vez, aunque el formulario lo mande dos veces. Los vendedores arman cotizaciones en cuatro pasos guiados y ningún precio llega a un cliente sin que una persona lo revise.",
+        "steps": [
+          "Un cliente llena el formulario del sitio web",
+          "El prospecto llega al CRM, verificado y sin duplicados",
+          "Un vendedor arma la cotización en 4 pasos guiados",
+          "Proyecto, instalación y garantía se siguen hasta el final"
+        ]
       },
       {
         "id": "attendance",
@@ -621,7 +640,14 @@
           ]
         },
         "gallery": [],
-        "galleryDemo": false
+        "galleryDemo": false,
+        "plain": "Los relojes de huella registran cuándo llega y se va cada persona, pero se equivocan: una entrada guardada como salida, una checada doble. Este sistema recoge esos registros cada pocos minutos, los limpia, calcula horas y horas extra según el horario de cada quien y le entrega a RH el reporte en el formato que ya usa.",
+        "steps": [
+          "El personal checa en relojes de huella",
+          "Los registros se sincronizan solos cada 10 minutos",
+          "El sistema corrige checadas con ruido y calcula horas extra",
+          "RH recibe el reporte en Excel o PDF"
+        ]
       }
     ],
     "other": {
@@ -820,6 +846,28 @@
         "label": "sistemas en uso diario",
         "detail": "integración de planta, asistencia y CRM"
       }
-    ]
+    ],
+    "compare": {
+      "title": "Antes y después, medido en corridas reales",
+      "before": "Antes",
+      "after": "Después",
+      "rows": [
+        {
+          "label": "Guardar una lista de materiales (~200 renglones) en el ERP",
+          "before": 307,
+          "after": 30
+        },
+        {
+          "label": "Flujo automatizado completo por ensamble",
+          "before": 548,
+          "after": 88
+        },
+        {
+          "label": "Abrir la aplicación",
+          "before": 26,
+          "after": 9
+        }
+      ]
+    }
   }
 }

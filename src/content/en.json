@@ -83,7 +83,12 @@
       "gallery": "Screens",
       "galleryNote": "Real screens. Names, codes, prices and brands are blurred.",
       "galleryNoteDemo": "Local copy with seed data. Brand removed.",
-      "impact": "Impact"
+      "impact": "Impact",
+      "view": "Read as",
+      "viewBusiness": "Business",
+      "viewTech": "Technical",
+      "plain": "In plain words",
+      "steps": "How it works"
     },
     "cases": [
       {
@@ -303,7 +308,14 @@
             "caption": "Logistics catalog: materials, densities and current prices."
           }
         ],
-        "galleryDemo": false
+        "galleryDemo": false,
+        "plain": "Think of it as a translator between the people who design machines and the people who buy and build them. Engineers draw a machine on the computer; this system reads that drawing, lists every screw and plate it needs, checks the list and loads it into the company's purchasing system. What took about 9 minutes of careful copying per machine now takes about a minute and a half, and the system refuses to save anything that does not check out.",
+        "steps": [
+          "The engineer types the machine's code",
+          "The system reads the 3D design and lists every part",
+          "It checks the list and stops if anything is missing",
+          "It loads the list into the ERP and emails what changed"
+        ]
       },
       {
         "id": "crm",
@@ -469,7 +481,14 @@
             "caption": "Guided 4-step quote with live preview."
           }
         ],
-        "galleryDemo": true
+        "galleryDemo": true,
+        "plain": "One place where a sales team sees every customer, from the first message to the after-sales visit. When someone fills in the website form, the lead appears on its own, and only once, even if the form sends it twice. Salespeople build quotes in four guided steps, and no price reaches a customer without a person reviewing it.",
+        "steps": [
+          "A customer fills in the website form",
+          "The lead lands in the CRM, verified and without duplicates",
+          "A salesperson builds the quote in 4 guided steps",
+          "The project, installation and warranty are tracked to the end"
+        ]
       },
       {
         "id": "attendance",
@@ -621,7 +640,14 @@
           ]
         },
         "gallery": [],
-        "galleryDemo": false
+        "galleryDemo": false,
+        "plain": "Fingerprint clocks record when people arrive and leave, but they make mistakes: an entry saved as an exit, a double punch. This system collects those records every few minutes, cleans them up, calculates hours and overtime according to each person's schedule, and hands HR the report in the format they already use.",
+        "steps": [
+          "Employees punch in on fingerprint clocks",
+          "Records sync automatically every 10 minutes",
+          "The system fixes noisy punches and calculates overtime",
+          "HR gets the report in Excel or PDF"
+        ]
       }
     ],
     "other": {
@@ -820,6 +846,28 @@
         "label": "systems in daily use",
         "detail": "plant integration, attendance and CRM"
       }
-    ]
+    ],
+    "compare": {
+      "title": "Before and after, measured on real runs",
+      "before": "Before",
+      "after": "After",
+      "rows": [
+        {
+          "label": "Saving a bill of materials (~200 rows) to the ERP",
+          "before": 307,
+          "after": 30
+        },
+        {
+          "label": "Full automated flow per assembly",
+          "before": 548,
+          "after": 88
+        },
+        {
+          "label": "Opening the application",
+          "before": 26,
+          "after": 9
+        }
+      ]
+    }
   }
 }

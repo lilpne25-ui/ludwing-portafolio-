@@ -26,6 +26,11 @@ export function Signal({ s, caption }: { s: S; caption: string }) {
         {[p1, p2, p3].map((d) => (
           <path key={`f${d}`} className="sig-flow" d={d} />
         ))}
+        {[p1, p2, p3].map((d, i) => (
+          <circle key={`k${d}`} className="sig-packet" r={3.2}>
+            <animateMotion dur={i === 2 ? "1.6s" : "2.6s"} begin={`${i * 0.7}s`} repeatCount="indefinite" path={d} />
+          </circle>
+        ))}
         <text className="sig-tag" x={2} y={104}>↓ {s.t1}</text>
         <text className="sig-tag" x={2} y={228}>↑ {s.t2}</text>
         <text className="sig-tag" x={372} y={214}>← {s.t3}</text>

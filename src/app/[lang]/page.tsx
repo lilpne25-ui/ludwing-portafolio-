@@ -1,11 +1,18 @@
 import { notFound } from "next/navigation";
 import { CaseStudyCard } from "@/components/CaseStudyCard";
+import { CountUp } from "@/components/CountUp";
+import { ViewSwitch } from "@/components/ViewSwitch";
 import { Header } from "@/components/Header";
 import { ArrowIcon, DownloadIcon, GitHubIcon } from "@/components/icons";
 import { Reveal } from "@/components/Reveal";
 import { Signal } from "@/components/Signal";
 import { getDictionary, isLocale, otherLocale } from "@/lib/i18n";
 import { site, siteUrl } from "@/lib/site";
+
+/** Seconds as m:ss, or "N s" under a minute. */
+function fmtTime(sec: number) {
+  return sec < 60 ? `${sec} s` : `${Math.floor(sec / 60)}:${String(sec % 60).padStart(2, "0")}`;
+}
 
 export default async function Home({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
@@ -82,11 +89,39 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
             <Reveal as="ul" className="impact-grid">
               {t.impact.items.map((i) => (
                 <li className="impact-item" key={i.label}>
-                  <span className="impact-value">{i.value}</span>
+                  <CountUp className="impact-value" value={i.value} />
                   <span className="impact-label">{i.label}</span>
                   <span className="impact-detail">{i.detail}</span>
                 </li>
               ))}
+            </Reveal>
+            <Reveal className="compare">
+              <h3>{t.impact.compare.title}</h3>
+              <ul>
+                {t.impact.compare.rows.map((r) => (
+                  <li key={r.label}>
+                    <span className="cmp-label">{r.label}</span>
+                    <div className="cmp-bars">
+                      <div className="cmp-row">
+                        <span className="cmp-tag">{t.impact.compare.before}</span>
+                        <span className="cmp-track">
+                          <span className="cmp-fill before" style={{ width: "100%" }} />
+                        </span>
+                        <span className="cmp-val">{fmtTime(r.before)}</span>
+                      </div>
+                      <div className="cmp-row">
+                        <span className="cmp-tag">{t.impact.compare.after}</span>
+                        <span className="cmp-track">
+                          <span className="cmp-fill after" style={{ width: `${Math.max(3, (r.after / r.before) * 100)}%` }} />
+                        </span>
+                        <span className="cmp-val">
+                          {fmtTime(r.after)} <em>−{Math.round((1 - r.after / r.before) * 100)}%</em>
+                        </span>
+                      </div>
+                    </div>
+                  </li>
+                ))}
+              </ul>
             </Reveal>
             <p className="impact-note">{t.impact.note}</p>
           </div>
@@ -101,13 +136,13 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
                 <p className="lede">{t.work.intro}</p>
               </div>
             </Reveal>
-            <div className="cases">
+            <ViewSwitch L={t.work.labels}>
               {t.work.cases.map((c) => (
                 <Reveal key={c.id}>
                   <CaseStudyCard c={c} L={t.work.labels} />
                 </Reveal>
               ))}
-            </div>
+            </ViewSwitch>
             <Reveal className="other">
               <div className="other-head">
                 <h3>{t.work.other.title}</h3>
