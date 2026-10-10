@@ -1,0 +1,604 @@
+{
+  "locale": "es",
+  "meta": {
+    "title": "Ludwing Valdés Reyes · Ingeniero de Software",
+    "description": "Ingeniero de software enfocado en backend, sistemas empresariales, bases de datos e integraciones para operaciones industriales y comerciales. Casos de estudio, experiencia y CV.",
+    "ogAlt": "Ludwing Valdés Reyes, Ingeniero de Software, Backend y Sistemas Empresariales"
+  },
+  "nav": {
+    "work": "Proyectos",
+    "experience": "Experiencia",
+    "stack": "Stack",
+    "contact": "Contacto",
+    "resume": "CV",
+    "skip": "Saltar al contenido",
+    "switchLabel": "English",
+    "switchAria": "View this site in English",
+    "menu": "Menú",
+    "close": "Cerrar"
+  },
+  "hero": {
+    "eyebrow": "Ingeniero de Software · Backend y Sistemas Empresariales",
+    "name": "Ludwing Valdés Reyes",
+    "headline": "Construyo los sistemas que conectan la planta, la oficina y la base de datos.",
+    "summary": "Software de escritorio y web para operaciones industriales y comerciales: aplicaciones sobre SQL, integraciones con los ERP y herramientas CAD que la empresa ya usa, y servicios backend en TypeScript y .NET.",
+    "ctaWork": "Ver mi trabajo",
+    "ctaResume": "Descargar CV",
+    "github": "GitHub",
+    "contact": "Contacto",
+    "facts": [
+      {
+        "label": "Enfoque",
+        "value": "Backend, sistemas empresariales, integraciones"
+      },
+      {
+        "label": "Stack principal",
+        "value": "TypeScript · C#/.NET · SQL Server · PostgreSQL"
+      },
+      {
+        "label": "Ubicación",
+        "value": "México"
+      }
+    ],
+    "diagramCaption": "Esquema. Las etiquetas son ilustrativas.",
+    "signal": {
+      "floor": "Planta",
+      "floorSub": "equipos · CAD · BOM",
+      "office": "Oficina",
+      "officeSub": "CRM · cotizaciones · SGC",
+      "core": "Capa de integración",
+      "coreSub": "valida · deduplica",
+      "db": "Base de datos",
+      "dbSub": "SQL · historial",
+      "t1": "piezas",
+      "t2": "prospectos",
+      "t3": "registros"
+    }
+  },
+  "work": {
+    "eyebrow": "Trabajo seleccionado",
+    "title": "Tres sistemas, contados como casos de ingeniería.",
+    "intro": "Cada caso explica el problema, las restricciones y las decisiones detrás de la construcción. Nombres, datos y diagramas están abstraídos; aquí no se expone información de clientes ni código privado.",
+    "labels": {
+      "problem": "Problema",
+      "context": "Contexto y restricciones",
+      "approach": "Enfoque",
+      "decisions": "Decisiones clave",
+      "alternative": "Alternativa evaluada",
+      "implemented": "Qué está construido",
+      "evidence": "Cómo se verifica",
+      "next": "Siguientes pasos",
+      "learned": "Qué aprendí",
+      "stack": "Stack",
+      "status": "Estado",
+      "diagram": "Arquitectura",
+      "diagramHint": "Selecciona un componente para ver su función. Esquema con datos ficticios.",
+      "open": "Leer el caso",
+      "collapse": "Cerrar caso"
+    },
+    "cases": [
+      {
+        "id": "quality-system",
+        "kicker": "Escritorio · Gestión de calidad",
+        "title": "Sistema de gestión de calidad para una operación ISO 9001",
+        "status": {
+          "label": "Base de producto · build Windows",
+          "tone": "build"
+        },
+        "summary": "Una aplicación de escritorio que convierte el trabajo de calidad (documentos controlados, registros, evidencias, hallazgos y acciones correctivas) en un proceso trazable y no en un árbol de carpetas.",
+        "stack": [
+          "Electron",
+          "React",
+          "TypeScript",
+          "SQL Server"
+        ],
+        "problem": "En un sistema de calidad certificado, lo difícil no es guardar archivos. Es saber qué versión de un documento está vigente, quién la revisó, dónde está la evidencia de un requisito y si un hallazgo realmente se cerró. Las carpetas compartidas no responden ninguna de esas preguntas.",
+        "context": [
+          "Estaciones Windows en red local, con SQL Server ya presente en el entorno.",
+          "Los usuarios son personal de calidad y operación, no desarrolladores. La herramienta tiene que ser obvia desde el primer día.",
+          "Estar listo para auditoría importa más que la cantidad de funciones: cada cambio de estado necesita responsable e historial."
+        ],
+        "approach": "Modelar el ciclo de calidad de forma explícita, Documento → Revisión → Evidencia → Hallazgo → Cierre, y registrar cada transición como un evento con responsable. Electron y React dan una app de Windows con sensación nativa; SQL Server es el sistema de registro.",
+        "decisions": [
+          {
+            "choice": "App de escritorio con Electron en lugar de una app web",
+            "why": "Encaja con equipos Windows en red local, puede trabajar con archivos y periféricos locales y se distribuye como un instalador generado desde el repositorio.",
+            "alternative": "Una app web hospedada, que agregaba temas de hosting y acceso que la operación todavía no necesitaba."
+          },
+          {
+            "choice": "SQL Server como base de datos principal",
+            "why": "Ya estaba presente y soportado en el entorno, lo que deja respaldos y operación en manos conocidas.",
+            "alternative": "Una base embebida, más fácil de distribuir pero más difícil de compartir y respaldar entre usuarios."
+          },
+          {
+            "choice": "El historial como datos, no como nombres de archivo",
+            "why": "Versiones, revisiones y cierres son filas con fecha y responsable, así que la pregunta de un auditor se vuelve una consulta.",
+            "alternative": "Sufijos de versión en el nombre del archivo, que es justo lo que el proceso reemplaza."
+          }
+        ],
+        "implemented": [
+          "Documentos controlados con versión vigente y estado de revisión.",
+          "Registros y evidencias ligados al proceso que respaldan.",
+          "Hallazgos (no conformidades, riesgos, observaciones de auditoría) con seguimiento hasta su cierre.",
+          "Build de Windows generado desde el repositorio."
+        ],
+        "evidence": [
+          "Build de Windows reproducible desde el código fuente.",
+          "Estado reportado con honestidad: base de producto, no producto comercial terminado."
+        ],
+        "next": [
+          "Reforzar roles y permisos por área.",
+          "Vistas de reporte para preparar auditorías."
+        ],
+        "learned": "En trabajo regulado, muchas veces el usuario es el auditor que llega seis meses después. Diseñar para ese lector cambió el modelo de datos más que cualquier decisión de interfaz.",
+        "diagram": {
+          "nodes": [
+            {
+              "id": "ui",
+              "label": "Interfaz",
+              "sub": "Electron + React",
+              "col": 0,
+              "row": 1,
+              "note": "Renderer en React y TypeScript. Presenta documentos, revisiones y hallazgos como un solo flujo."
+            },
+            {
+              "id": "main",
+              "label": "Proceso de la app",
+              "sub": "Electron main",
+              "col": 1,
+              "row": 1,
+              "note": "Concentra el acceso a datos y archivos; la interfaz nunca habla directo con la base."
+            },
+            {
+              "id": "domain",
+              "label": "Reglas de calidad",
+              "sub": "Estados y transiciones",
+              "col": 2,
+              "row": 0,
+              "note": "Documento → Revisión → Evidencia → Hallazgo → Cierre. Cada transición registra quién y cuándo."
+            },
+            {
+              "id": "files",
+              "label": "Archivos",
+              "sub": "Copias controladas",
+              "col": 2,
+              "row": 2,
+              "note": "Los adjuntos se referencian desde los registros; nunca son la fuente de verdad."
+            },
+            {
+              "id": "db",
+              "label": "SQL Server",
+              "sub": "Sistema de registro",
+              "col": 3,
+              "row": 1,
+              "note": "Versiones, revisiones y cierres guardados como filas con responsable y fecha."
+            }
+          ],
+          "edges": [
+            [
+              "ui",
+              "main"
+            ],
+            [
+              "main",
+              "domain"
+            ],
+            [
+              "main",
+              "files"
+            ],
+            [
+              "domain",
+              "db"
+            ],
+            [
+              "files",
+              "db"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "crm-intake",
+        "kicker": "Backend · CRM y mensajería",
+        "title": "CRM con captura estructurada de prospectos desde WhatsApp",
+        "status": {
+          "label": "CRM implementado · capa de IA planeada",
+          "tone": "live"
+        },
+        "summary": "Un CRM comercial que sigue al prospecto desde el primer mensaje hasta la cotización y la postventa, con una entrada por webhook que captura prospectos de forma confiable y deja a una persona a cargo de lo que se envía.",
+        "stack": [
+          "TypeScript",
+          "Webhooks",
+          "APIs REST",
+          "Base relacional"
+        ],
+        "problem": "Los prospectos llegaban por chat y se copiaban a mano en hojas de cálculo. Se perdían mensajes, el mismo cliente aparecía tres veces y las cotizaciones se editaban encima, sin registro de lo que se había ofrecido antes.",
+        "context": [
+          "Las plataformas de mensajería reintentan los webhooks, así que el mismo evento puede llegar más de una vez.",
+          "Las cotizaciones llevan costos visibles, ocultos y prorrateados. Una revisión enviada nunca debe cambiar después.",
+          "Las imágenes y PDFs subidos necesitan límites y validación antes de guardarse."
+        ],
+        "approach": "Tratar cada mensaje entrante como un evento: confirmar rápido, deduplicar con el identificador del proveedor, normalizarlo como prospecto estructurado y pasarlo a revisión humana. Dentro del CRM, las cotizaciones son revisiones inmutables ligadas a un proyecto y un cliente.",
+        "decisions": [
+          {
+            "choice": "Un flujo de captura determinista en lugar de un agente generativo",
+            "why": "La captura, clasificación y seguimiento deben ser predecibles y auditables. La capa generativa está planeada y separada, detrás de revisión humana.",
+            "alternative": "Un agente LLM respondiendo directo al cliente, que no es lo que este sistema hace hoy."
+          },
+          {
+            "choice": "Procesamiento idempotente por ID de mensaje",
+            "why": "Los reintentos se vuelven inofensivos: una entrega repetida encuentra el registro existente y se detiene.",
+            "alternative": "Inserciones sin control, que es como se creaban clientes duplicados."
+          },
+          {
+            "choice": "Revisiones de cotización inmutables",
+            "why": "Lo que se le ofreció a un cliente en cierta fecha siempre se puede consultar. Un cambio crea una nueva revisión.",
+            "alternative": "Cotizaciones editables, más simples pero imposibles de auditar."
+          }
+        ],
+        "implemented": [
+          "Flujo de prospecto a cliente, proyecto, cotización, seguimiento y postventa.",
+          "Motor de cotización con partidas de catálogo o libres y costos visibles, ocultos o prorrateados.",
+          "Almacenamiento seguro de imágenes y PDFs: límites de tamaño, validación MIME y URLs protegidas.",
+          "Recepción por webhook con captura estructurada de prospectos y control de duplicados."
+        ],
+        "evidence": [
+          "Entregado por fases cerradas: dominio, workspace de cliente, revisiones, seguimiento, motor de cotización y archivos seguros.",
+          "Cada función se marca como implementada, piloto o roadmap, para no presentar trabajo planeado como terminado."
+        ],
+        "next": [
+          "IA de apoyo para redactar y clasificar, siempre revisada por una persona.",
+          "Métricas de entrega y respuesta en la cola de entrada."
+        ],
+        "learned": "La confiabilidad de una integración se decide en la frontera. Cuando la deduplicación y la confirmación quedaron bien, todo lo demás se simplificó.",
+        "diagram": {
+          "nodes": [
+            {
+              "id": "chat",
+              "label": "Proveedor de mensajería",
+              "sub": "Webhook",
+              "col": 0,
+              "row": 1,
+              "note": "Entrega eventos de mensaje. Los reintentos son normales, por eso el receptor debe ser idempotente."
+            },
+            {
+              "id": "rx",
+              "label": "Receptor",
+              "sub": "Confirma rápido",
+              "col": 1,
+              "row": 1,
+              "note": "Valida la petición, confirma rápido y pasa el evento a procesamiento."
+            },
+            {
+              "id": "dedupe",
+              "label": "Deduplicación",
+              "sub": "Clave: ID de mensaje",
+              "col": 2,
+              "row": 0,
+              "note": "Una entrega repetida con el mismo ID se detecta y se detiene aquí. Ejemplo: msg_7f3a (ficticio)."
+            },
+            {
+              "id": "lead",
+              "label": "Prospecto",
+              "sub": "Normalizado",
+              "col": 2,
+              "row": 2,
+              "note": "Nombre, canal, interés e historial en un registro estructurado, no en una conversación de chat."
+            },
+            {
+              "id": "review",
+              "label": "Revisión humana",
+              "sub": "Antes de enviar",
+              "col": 3,
+              "row": 1,
+              "note": "La automatización captura y organiza. Una persona revisa cotizaciones y respuestas antes de enviarlas."
+            }
+          ],
+          "edges": [
+            [
+              "chat",
+              "rx"
+            ],
+            [
+              "rx",
+              "dedupe"
+            ],
+            [
+              "dedupe",
+              "lead"
+            ],
+            [
+              "lead",
+              "review"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "engineering-bridge",
+        "kicker": "Escritorio · Integración industrial",
+        "title": "Puente de costos e ingeniería para una planta de manufactura",
+        "status": {
+          "label": "Build productivo verificado",
+          "tone": "build"
+        },
+        "summary": "Una aplicación de Windows que conecta datos de CAD, una base de costos existente y el ERP de la planta, para que las listas de materiales dejen de capturarse a mano entre sistemas.",
+        "stack": [
+          "Python",
+          "PySide6",
+          "pyodbc",
+          "C# / .NET 8"
+        ],
+        "problem": "Los datos de ingeniería vivían en CAD y PDM, los costos y reglas de proveedores en una base heredada, y el ERP esperaba su propio formato de lista de materiales. Mover datos entre ellos era manual, lento y una fuente constante de errores.",
+        "context": [
+          "La planta ya usa SolidWorks / PDM, una base Pervasive (Actian) y Global Shop como ERP. Reemplazar cualquiera estaba fuera de alcance.",
+          "Lo usan dos equipos distintos: logística e ingeniería.",
+          "Debe correr como ejecutable portable de Windows en estaciones estándar."
+        ],
+        "approach": "Una app de escritorio por capas: interfaz en PySide6, un motor de validación y enriquecimiento al centro, acceso ODBC a la base heredada y un componente .NET para el lado CAD. La salida es una lista de materiales en el formato que importa el ERP.",
+        "decisions": [
+          {
+            "choice": "Integrar con los sistemas existentes en lugar de reemplazarlos",
+            "why": "Las herramientas de la planta funcionan y la gente las conoce. La ganancia estaba en quitar los pasos manuales entre ellas.",
+            "alternative": "Una plataforma nueva todo en uno, con un costo de migración que la operación no podía justificar."
+          },
+          {
+            "choice": "Python para la app y C#/.NET 8 para la capa CAD",
+            "why": "Python y PySide6 avanzan rápido en trabajo de escritorio con muchos datos; el ecosistema CAD se siente en casa en .NET.",
+            "alternative": "Un solo lenguaje para todo, a costa de pelear con uno de los dos ecosistemas."
+          },
+          {
+            "choice": "Scripts de validación y smoke tests antes de cada release",
+            "why": "Un ejecutable portable en estaciones de planta es difícil de parchar, así que los problemas se detectan antes de distribuir.",
+            "alternative": "Revisiones manuales en cada equipo después de instalar."
+          }
+        ],
+        "implemented": [
+          "App de escritorio para flujos de logística e ingeniería.",
+          "Lectura de costos, proveedores y reglas vía ODBC.",
+          "Extracción de datos de CAD / PDM para listas de materiales.",
+          "Salida de lista de materiales en el formato de importación del ERP."
+        ],
+        "evidence": [
+          "Build productivo verificado en el entorno Windows objetivo.",
+          "Scripts de validación y smoke tests en cada release portable."
+        ],
+        "next": [
+          "Ampliar la cobertura del ERP más allá de la importación de listas de materiales.",
+          "Empaquetado y flujo de actualización para varias estaciones."
+        ],
+        "learned": "Los sistemas heredados son restricciones, no obstáculos. El código más valioso fue la capa de validación que rechazaba datos malos antes de llegar al ERP.",
+        "diagram": {
+          "nodes": [
+            {
+              "id": "cad",
+              "label": "CAD / PDM",
+              "sub": "Origen de la lista",
+              "col": 0,
+              "row": 0,
+              "note": "Las piezas y la estructura vienen de las herramientas CAD y PDM de ingeniería."
+            },
+            {
+              "id": "legacy",
+              "label": "Base de costos",
+              "sub": "ODBC",
+              "col": 0,
+              "row": 2,
+              "note": "Costos, proveedores y reglas leídos desde la base heredada existente."
+            },
+            {
+              "id": "engine",
+              "label": "Motor de validación",
+              "sub": "Valida · enriquece · resuelve",
+              "col": 1,
+              "row": 1,
+              "note": "Rechaza filas incompletas o inconsistentes antes de exportar nada."
+            },
+            {
+              "id": "app",
+              "label": "App de escritorio",
+              "sub": "PySide6",
+              "col": 2,
+              "row": 1,
+              "note": "Dos espacios de trabajo: logística e ingeniería."
+            },
+            {
+              "id": "erp",
+              "label": "Importación ERP",
+              "sub": "Formato de lista",
+              "col": 3,
+              "row": 1,
+              "note": "Genera la lista de materiales en el formato que espera el ERP."
+            }
+          ],
+          "edges": [
+            [
+              "cad",
+              "engine"
+            ],
+            [
+              "legacy",
+              "engine"
+            ],
+            [
+              "engine",
+              "app"
+            ],
+            [
+              "app",
+              "erp"
+            ]
+          ]
+        }
+      }
+    ],
+    "other": {
+      "title": "También en curso",
+      "intro": "Trabajo más pequeño o en etapa temprana, con su estado real.",
+      "items": [
+        {
+          "title": "Punto de venta sobre Odoo Community",
+          "status": "Candidato a piloto",
+          "text": "Una capa modular sobre Odoo Community 19: escáner móvil con emparejamiento temporal, tokens con hash, límite de peticiones y eventos con confirmación; PWA autenticada para el dueño. La facturación fiscal corre en simulación y aún no está conectada a un proveedor productivo.",
+          "stack": [
+            "Odoo",
+            "PWA",
+            "Python"
+          ]
+        },
+        {
+          "title": "Backend de catálogo técnico",
+          "status": "Fundamentos",
+          "text": "Servicio de catálogo sobre Next.js, PostgreSQL y Prisma, con autenticación, control de acceso por roles y una estructura hexagonal que separa las reglas de dominio de los frameworks. El módulo completo de cotización no está terminado.",
+          "stack": [
+            "Next.js",
+            "PostgreSQL",
+            "Prisma"
+          ]
+        },
+        {
+          "title": "Control de asistencia y reportes operativos",
+          "status": "Herramientas internas",
+          "text": "Aplicaciones .NET y bases SQL para control de asistencia, dispositivos y reportes operativos en un entorno industrial.",
+          "stack": [
+            ".NET",
+            "WinForms",
+            "SQL Server"
+          ]
+        }
+      ]
+    }
+  },
+  "principles": {
+    "eyebrow": "Cómo trabajo",
+    "title": "Hábitos de ingeniería que aparecen en cada proyecto.",
+    "items": [
+      {
+        "title": "Partir del proceso que ya existe",
+        "text": "Entender el flujo actual, sus datos y sus restricciones antes de proponer software."
+      },
+      {
+        "title": "Integrar antes de reemplazar",
+        "text": "ERP, CAD, bases heredadas y archivos son parte del sistema. Primero se conectan."
+      },
+      {
+        "title": "Hacer trazable el estado",
+        "text": "Roles, historial y validaciones son funciones. Si un auditor pregunta, la respuesta debe ser una consulta."
+      },
+      {
+        "title": "Automatizar con una persona en el ciclo",
+        "text": "Automatizar captura, cálculo y seguimiento. Las decisiones sensibles se quedan con las personas."
+      },
+      {
+        "title": "Reportar el estado con honestidad",
+        "text": "Implementado, piloto y roadmap son palabras distintas. Las uso con precisión."
+      }
+    ]
+  },
+  "experience": {
+    "eyebrow": "Experiencia",
+    "title": "De dónde viene este trabajo.",
+    "items": [
+      {
+        "org": "VLUX",
+        "role": "Cofundador · Tecnología y desarrollo de producto",
+        "period": null,
+        "summary": "Dirección tecnológica y desarrollo directo en una iniciativa que construye software empresarial para operaciones industriales y comerciales.",
+        "points": [
+          "Arquitectura y desarrollo en cuatro líneas de producto: CRM, punto de venta, costos industriales y gestión de calidad.",
+          "Integraciones con ERP, CAD/PDM, bases heredadas, webhooks de mensajería y dispositivos.",
+          "Disciplina de release: repositorios, documentación, scripts de validación y estado explícito de cada función."
+        ]
+      },
+      {
+        "org": "Empresa de manufactura industrial",
+        "role": "TI y Sistemas",
+        "period": null,
+        "summary": "Soporte tecnológico e infraestructura para una operación de manufactura que trabaja bajo ISO 9001.",
+        "points": [
+          "Soporte técnico en hardware, software y redes.",
+          "Respaldos y recuperación de información; monitoreo de red y servidores.",
+          "Instalación, configuración y mantenimiento preventivo de equipos y sistemas, incluido el plan de direccionamiento de red.",
+          "Apoyo tecnológico al sistema de gestión de calidad y su documentación."
+        ]
+      }
+    ]
+  },
+  "stack": {
+    "eyebrow": "Stack",
+    "title": "Herramientas que he usado en trabajo entregado o en operación.",
+    "note": "Agrupadas por dónde las uso. Sin calificaciones: los casos de arriba son la evidencia.",
+    "groups": [
+      {
+        "title": "Backend y APIs",
+        "items": [
+          "TypeScript",
+          "Node.js",
+          "C# / .NET",
+          "Python",
+          "APIs REST",
+          "Webhooks",
+          "Autenticación y RBAC"
+        ]
+      },
+      {
+        "title": "Datos y bases de datos",
+        "items": [
+          "SQL Server",
+          "PostgreSQL",
+          "Prisma",
+          "Pervasive / Actian (ODBC)",
+          "Validación y migración de datos"
+        ]
+      },
+      {
+        "title": "Frontend y escritorio",
+        "items": [
+          "React",
+          "Next.js",
+          "Electron",
+          "WinForms",
+          "PySide6",
+          "Progressive Web Apps"
+        ]
+      },
+      {
+        "title": "Infraestructura y prácticas",
+        "items": [
+          "Redes y plan de IPs",
+          "Respaldos y recuperación",
+          "Estaciones y servidores Windows",
+          "Git y GitHub",
+          "Arquitectura hexagonal",
+          "Smoke tests de release",
+          "Odoo Community"
+        ]
+      }
+    ]
+  },
+  "contact": {
+    "eyebrow": "Contacto",
+    "title": "Hablemos del sistema que necesitas construir.",
+    "text": "Estoy abierto a conversar sobre puestos y proyectos de ingeniería de software en backend, sistemas empresariales e integraciones. La forma más rápida de contactarme es por GitHub.",
+    "github": "github.com/lilpne25-ui",
+    "resume": "Descargar CV (PDF)"
+  },
+  "footer": {
+    "note": "Diseñado y construido por Ludwing Valdés Reyes con Next.js. Los casos usan datos abstraídos y ficticios.",
+    "top": "Volver arriba"
+  },
+  "notFound": {
+    "code": "404",
+    "title": "Esta página no forma parte del sistema.",
+    "text": "La dirección puede estar desactualizada o mal escrita.",
+    "home": "Ir al inicio"
+  },
+  "resume": {
+    "file": "/resume/ludwing-valdes-reyes-cv-es.pdf",
+    "title": "Currículum",
+    "selected": "Trabajo seleccionado",
+    "skills": "Habilidades",
+    "links": "Enlaces"
+  }
+}

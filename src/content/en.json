@@ -1,0 +1,604 @@
+{
+  "locale": "en",
+  "meta": {
+    "title": "Ludwing Valdés Reyes · Software Engineer",
+    "description": "Software engineer focused on backend, enterprise systems, databases and integrations for industrial and commercial operations. Case studies, experience and resume.",
+    "ogAlt": "Ludwing Valdés Reyes, Software Engineer, Backend and Enterprise Systems"
+  },
+  "nav": {
+    "work": "Work",
+    "experience": "Experience",
+    "stack": "Stack",
+    "contact": "Contact",
+    "resume": "Resume",
+    "skip": "Skip to content",
+    "switchLabel": "Español",
+    "switchAria": "Ver este sitio en español",
+    "menu": "Menu",
+    "close": "Close"
+  },
+  "hero": {
+    "eyebrow": "Software Engineer · Backend & Enterprise Systems",
+    "name": "Ludwing Valdés Reyes",
+    "headline": "I build the systems between the shop floor, the office and the database.",
+    "summary": "Desktop and web software for industrial and commercial operations: SQL-backed applications, integrations with the ERPs and CAD tools a company already runs, and backend services in TypeScript and .NET.",
+    "ctaWork": "Explore my work",
+    "ctaResume": "Download resume",
+    "github": "GitHub",
+    "contact": "Contact",
+    "facts": [
+      {
+        "label": "Focus",
+        "value": "Backend, enterprise systems, integrations"
+      },
+      {
+        "label": "Core stack",
+        "value": "TypeScript · C#/.NET · SQL Server · PostgreSQL"
+      },
+      {
+        "label": "Based in",
+        "value": "Mexico"
+      }
+    ],
+    "diagramCaption": "Schematic. Labels are illustrative.",
+    "signal": {
+      "floor": "Shop floor",
+      "floorSub": "devices · CAD · BOM",
+      "office": "Office",
+      "officeSub": "CRM · quotes · QMS",
+      "core": "Integration layer",
+      "coreSub": "validate · dedupe",
+      "db": "Database",
+      "dbSub": "SQL · history",
+      "t1": "parts",
+      "t2": "leads",
+      "t3": "records"
+    }
+  },
+  "work": {
+    "eyebrow": "Selected work",
+    "title": "Three systems, written up as engineering cases.",
+    "intro": "Each case explains the problem, the constraints and the decisions behind the build. Names, data and diagrams are abstracted; nothing here exposes client information or private code.",
+    "labels": {
+      "problem": "Problem",
+      "context": "Context & constraints",
+      "approach": "Approach",
+      "decisions": "Key decisions",
+      "alternative": "Considered",
+      "implemented": "What is built",
+      "evidence": "How it is verified",
+      "next": "Next steps",
+      "learned": "What I learned",
+      "stack": "Stack",
+      "status": "Status",
+      "diagram": "Architecture",
+      "diagramHint": "Select a component to see its role. Schematic with fictional data.",
+      "open": "Read the case",
+      "collapse": "Collapse case"
+    },
+    "cases": [
+      {
+        "id": "quality-system",
+        "kicker": "Desktop · Quality management",
+        "title": "Quality management system for an ISO 9001 operation",
+        "status": {
+          "label": "Product base · Windows build",
+          "tone": "build"
+        },
+        "summary": "A desktop application that turns quality work (controlled documents, records, evidence, findings and corrective actions) into a traceable process instead of a folder tree.",
+        "stack": [
+          "Electron",
+          "React",
+          "TypeScript",
+          "SQL Server"
+        ],
+        "problem": "In a certified quality system, the hard part is not storing files. It is knowing which version of a document is current, who reviewed it, where the evidence for a requirement lives and whether a finding was actually closed. Shared folders answer none of those questions.",
+        "context": [
+          "Windows workstations on a local network, with SQL Server already part of the environment.",
+          "Users are quality and operations staff, not developers. The tool has to be obvious on day one.",
+          "Audit readiness matters more than feature count: every state change needs an owner and a history."
+        ],
+        "approach": "Model the quality cycle explicitly as Document → Review → Evidence → Finding → Closure, and make each transition a recorded event with a responsible person. Electron and React give a native-feeling Windows app; SQL Server is the system of record.",
+        "decisions": [
+          {
+            "choice": "Desktop app on Electron instead of a browser-only web app",
+            "why": "Fits a Windows fleet on a local network, can work with local files and peripherals, and ships as a single installer built from the repository.",
+            "alternative": "A hosted web app, which would add hosting and access concerns the operation did not need yet."
+          },
+          {
+            "choice": "SQL Server as the runtime database",
+            "why": "It was already present and supported in the environment, which keeps backups and operations in familiar hands.",
+            "alternative": "An embedded database, simpler to ship but harder to share and back up across users."
+          },
+          {
+            "choice": "History as data, not as file names",
+            "why": "Versions, reviews and closures are rows with timestamps and owners, so an auditor's question becomes a query.",
+            "alternative": "Version suffixes in file names, which is what the process replaces."
+          }
+        ],
+        "implemented": [
+          "Controlled documents with a current version and review state.",
+          "Records and evidence linked to the process they support.",
+          "Findings (nonconformities, risks, audit observations) tracked to closure.",
+          "A Windows build generated from the repository."
+        ],
+        "evidence": [
+          "Reproducible Windows build from source.",
+          "Status reported honestly as a product base, not a finished commercial product."
+        ],
+        "next": [
+          "Harden roles and permissions per area.",
+          "Reporting views for audit preparation."
+        ],
+        "learned": "In regulated work, the user is often the auditor who shows up six months later. Designing for that reader changed the data model more than any UI decision.",
+        "diagram": {
+          "nodes": [
+            {
+              "id": "ui",
+              "label": "Desktop UI",
+              "sub": "Electron + React",
+              "col": 0,
+              "row": 1,
+              "note": "Renderer built with React and TypeScript. Presents documents, reviews and findings as one workflow."
+            },
+            {
+              "id": "main",
+              "label": "App process",
+              "sub": "Electron main",
+              "col": 1,
+              "row": 1,
+              "note": "Owns database access and file handling, so the UI never talks to the database directly."
+            },
+            {
+              "id": "domain",
+              "label": "Quality rules",
+              "sub": "States & transitions",
+              "col": 2,
+              "row": 0,
+              "note": "Document → Review → Evidence → Finding → Closure. Each transition records who and when."
+            },
+            {
+              "id": "files",
+              "label": "File store",
+              "sub": "Controlled copies",
+              "col": 2,
+              "row": 2,
+              "note": "Attachments are referenced from records, never used as the source of truth."
+            },
+            {
+              "id": "db",
+              "label": "SQL Server",
+              "sub": "System of record",
+              "col": 3,
+              "row": 1,
+              "note": "Versions, reviews and closures stored as rows with owners and timestamps."
+            }
+          ],
+          "edges": [
+            [
+              "ui",
+              "main"
+            ],
+            [
+              "main",
+              "domain"
+            ],
+            [
+              "main",
+              "files"
+            ],
+            [
+              "domain",
+              "db"
+            ],
+            [
+              "files",
+              "db"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "crm-intake",
+        "kicker": "Backend · CRM & messaging",
+        "title": "CRM with structured lead intake from WhatsApp",
+        "status": {
+          "label": "CRM implemented · AI layer planned",
+          "tone": "live"
+        },
+        "summary": "A commercial CRM that follows a lead from first message to quote and after-sales, with a webhook intake that captures prospects reliably and keeps a person in charge of what gets sent.",
+        "stack": [
+          "TypeScript",
+          "Webhooks",
+          "REST APIs",
+          "Relational DB"
+        ],
+        "problem": "Leads arrived through chat and were copied by hand into spreadsheets. Messages got lost, the same customer showed up three times, and quotes were edited in place with no record of what was offered before.",
+        "context": [
+          "Messaging platforms retry webhook deliveries, so the same event can arrive more than once.",
+          "Quotes carry visible, hidden and prorated costs. A sent revision must never change after the fact.",
+          "Uploaded images and PDFs need limits and validation before they are stored."
+        ],
+        "approach": "Treat every incoming message as an event: acknowledge fast, deduplicate by the provider's message identifier, normalize it into a structured lead and hand it to a person for review. Inside the CRM, quotes are immutable revisions attached to a project and a customer.",
+        "decisions": [
+          {
+            "choice": "A deterministic intake flow instead of a generative agent",
+            "why": "Capture, classification and follow-up need to be predictable and auditable. The generative layer is planned and kept separate, behind human review.",
+            "alternative": "An LLM agent answering customers directly, which is not what this system does today."
+          },
+          {
+            "choice": "Idempotent processing keyed on the message ID",
+            "why": "Retries become harmless: a repeated delivery finds the existing record and stops.",
+            "alternative": "Best-effort inserts, which is how duplicate customers were created."
+          },
+          {
+            "choice": "Immutable quote revisions",
+            "why": "What a customer was offered on a given day stays answerable. A change creates a new revision.",
+            "alternative": "Editable quotes, simpler but impossible to audit."
+          }
+        ],
+        "implemented": [
+          "Pipeline from prospect to customer, project, quote, follow-up and after-sales.",
+          "Quote engine with catalog or free-form lines and visible, hidden or prorated costs.",
+          "Secure storage for images and PDFs: size limits, MIME validation and protected URLs.",
+          "Webhook reception with structured lead capture and duplicate control."
+        ],
+        "evidence": [
+          "Delivered in closed phases: domain, customer workspace, revisions, follow-up, quote engine and secure assets.",
+          "Feature status tracked as implemented, pilot or roadmap so planned work is never presented as shipped."
+        ],
+        "next": [
+          "Assistive AI for drafting and classification, always reviewed by a person.",
+          "Delivery and response metrics on the intake queue."
+        ],
+        "learned": "The reliability of an integration is decided at the boundary. Once deduplication and acknowledgement were right, everything downstream got simpler.",
+        "diagram": {
+          "nodes": [
+            {
+              "id": "chat",
+              "label": "Messaging provider",
+              "sub": "Webhook",
+              "col": 0,
+              "row": 1,
+              "note": "Delivers message events. Retries are expected, so the receiver must be idempotent."
+            },
+            {
+              "id": "rx",
+              "label": "Receiver",
+              "sub": "Ack fast",
+              "col": 1,
+              "row": 1,
+              "note": "Validates the request, acknowledges quickly and passes the event on for processing."
+            },
+            {
+              "id": "dedupe",
+              "label": "Dedupe",
+              "sub": "Message ID key",
+              "col": 2,
+              "row": 0,
+              "note": "A repeated delivery with the same ID is detected and stops here. Example: msg_7f3a (fictional)."
+            },
+            {
+              "id": "lead",
+              "label": "Lead record",
+              "sub": "Normalized",
+              "col": 2,
+              "row": 2,
+              "note": "Name, channel, interest and history in a structured record instead of a chat transcript."
+            },
+            {
+              "id": "review",
+              "label": "Human review",
+              "sub": "Before sending",
+              "col": 3,
+              "row": 1,
+              "note": "Automation captures and organizes. A person reviews quotes and replies before they go out."
+            }
+          ],
+          "edges": [
+            [
+              "chat",
+              "rx"
+            ],
+            [
+              "rx",
+              "dedupe"
+            ],
+            [
+              "dedupe",
+              "lead"
+            ],
+            [
+              "lead",
+              "review"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "engineering-bridge",
+        "kicker": "Desktop · Industrial integration",
+        "title": "Costing and engineering bridge for a manufacturing plant",
+        "status": {
+          "label": "Production build verified",
+          "tone": "build"
+        },
+        "summary": "A Windows application that connects CAD data, an existing costing database and the plant's ERP, so bills of materials stop being retyped between systems.",
+        "stack": [
+          "Python",
+          "PySide6",
+          "pyodbc",
+          "C# / .NET 8"
+        ],
+        "problem": "Engineering data lived in the CAD and PDM tools, costs and supplier rules in a legacy database, and the ERP expected its own bill-of-materials format. Moving data between them was manual, slow and a reliable source of errors.",
+        "context": [
+          "The plant already runs SolidWorks / PDM, a Pervasive (Actian) database and Global Shop as ERP. Replacing any of them was out of scope.",
+          "Two different teams use it: logistics and engineering.",
+          "It has to run as a portable Windows executable on standard workstations."
+        ],
+        "approach": "A layered desktop app: a PySide6 interface, a validation and enrichment engine in the middle, ODBC access to the legacy database, and a .NET component for the CAD side. The output is a bill of materials in the format the ERP imports.",
+        "decisions": [
+          {
+            "choice": "Integrate with the existing systems instead of replacing them",
+            "why": "The plant's tools work and people know them. The gain was in removing the manual steps between them.",
+            "alternative": "A new all-in-one platform, with a migration cost the operation could not justify."
+          },
+          {
+            "choice": "Python for the app, C#/.NET 8 for the CAD layer",
+            "why": "Python and PySide6 move fast for data-heavy desktop work; the CAD ecosystem is most at home in .NET.",
+            "alternative": "A single language for everything, at the cost of fighting one of the two ecosystems."
+          },
+          {
+            "choice": "Validation scripts and smoke tests gate every release",
+            "why": "A portable executable on plant workstations is hard to patch, so problems need to be caught before it ships.",
+            "alternative": "Manual checks on each machine after installation."
+          }
+        ],
+        "implemented": [
+          "Desktop app for logistics and engineering workflows.",
+          "Read access to costs, suppliers and rules through ODBC.",
+          "CAD / PDM data extraction for bills of materials.",
+          "Bill-of-materials output in the ERP's import format."
+        ],
+        "evidence": [
+          "Production build verified on the target Windows environment.",
+          "Validation scripts and smoke tests run for each portable release."
+        ],
+        "next": [
+          "Broaden ERP coverage beyond bill-of-materials import.",
+          "Packaging and update flow for multiple workstations."
+        ],
+        "learned": "Legacy systems are constraints, not obstacles. The most valuable code was the validation layer that refused bad data before it reached the ERP.",
+        "diagram": {
+          "nodes": [
+            {
+              "id": "cad",
+              "label": "CAD / PDM",
+              "sub": "BOM source",
+              "col": 0,
+              "row": 0,
+              "note": "Parts and structure come from engineering's CAD and PDM tools."
+            },
+            {
+              "id": "legacy",
+              "label": "Costing DB",
+              "sub": "ODBC",
+              "col": 0,
+              "row": 2,
+              "note": "Costs, suppliers and rules read from the existing legacy database."
+            },
+            {
+              "id": "engine",
+              "label": "Validation engine",
+              "sub": "Validate · enrich · resolve",
+              "col": 1,
+              "row": 1,
+              "note": "Rejects incomplete or inconsistent rows before anything is exported."
+            },
+            {
+              "id": "app",
+              "label": "Desktop app",
+              "sub": "PySide6",
+              "col": 2,
+              "row": 1,
+              "note": "Two workspaces: logistics and engineering."
+            },
+            {
+              "id": "erp",
+              "label": "ERP import",
+              "sub": "BOM format",
+              "col": 3,
+              "row": 1,
+              "note": "Produces the bill of materials in the format the ERP expects."
+            }
+          ],
+          "edges": [
+            [
+              "cad",
+              "engine"
+            ],
+            [
+              "legacy",
+              "engine"
+            ],
+            [
+              "engine",
+              "app"
+            ],
+            [
+              "app",
+              "erp"
+            ]
+          ]
+        }
+      }
+    ],
+    "other": {
+      "title": "Also in progress",
+      "intro": "Smaller or earlier-stage work, listed with its real status.",
+      "items": [
+        {
+          "title": "Point of sale on Odoo Community",
+          "status": "Pilot candidate",
+          "text": "A modular layer over Odoo Community 19: mobile scanner with temporary pairing, hashed tokens, rate limiting and acknowledged events; an authenticated owner PWA. Fiscal invoicing runs in simulation and is not yet connected to a production provider.",
+          "stack": [
+            "Odoo",
+            "PWA",
+            "Python"
+          ]
+        },
+        {
+          "title": "Technical catalog backend",
+          "status": "Foundations",
+          "text": "Catalog service built on Next.js, PostgreSQL and Prisma, with authentication, role-based access and a hexagonal structure that keeps domain rules apart from frameworks. The full quoting module is not finished.",
+          "stack": [
+            "Next.js",
+            "PostgreSQL",
+            "Prisma"
+          ]
+        },
+        {
+          "title": "Attendance and operational reporting",
+          "status": "Internal tools",
+          "text": ".NET applications and SQL databases for attendance control, devices and operational reports in an industrial setting.",
+          "stack": [
+            ".NET",
+            "WinForms",
+            "SQL Server"
+          ]
+        }
+      ]
+    }
+  },
+  "principles": {
+    "eyebrow": "How I work",
+    "title": "Engineering habits that show up in every project.",
+    "items": [
+      {
+        "title": "Start from the process that exists",
+        "text": "Understand the current workflow, its data and its constraints before proposing software."
+      },
+      {
+        "title": "Integrate before replacing",
+        "text": "ERPs, CAD tools, legacy databases and files are part of the system. Connect them first."
+      },
+      {
+        "title": "Make state traceable",
+        "text": "Roles, history and validation are features. If an auditor asks, the answer should be a query."
+      },
+      {
+        "title": "Automate with a person in the loop",
+        "text": "Automate capture, calculation and follow-up. Keep sensitive decisions with people."
+      },
+      {
+        "title": "Report status honestly",
+        "text": "Implemented, pilot and roadmap are different words. I use them precisely."
+      }
+    ]
+  },
+  "experience": {
+    "eyebrow": "Experience",
+    "title": "Where this work comes from.",
+    "items": [
+      {
+        "org": "VLUX",
+        "role": "Co-founder · Technology & product development",
+        "period": null,
+        "summary": "Technology direction and hands-on development for an initiative that builds business software for industrial and commercial operations.",
+        "points": [
+          "Architecture and development across four product lines: CRM, point of sale, industrial costing and quality management.",
+          "Integrations with ERPs, CAD/PDM, legacy databases, messaging webhooks and devices.",
+          "Release discipline: repositories, documentation, validation scripts and explicit feature status."
+        ]
+      },
+      {
+        "org": "Industrial manufacturing company",
+        "role": "IT & Systems",
+        "period": null,
+        "summary": "Technology support and infrastructure for a manufacturing operation working under ISO 9001.",
+        "points": [
+          "Technical support across hardware, software and networks.",
+          "Backups and information recovery; monitoring of network and servers.",
+          "Installation, configuration and preventive maintenance of equipment and systems, including the network addressing plan.",
+          "Technology support for the quality management system and its documentation."
+        ]
+      }
+    ]
+  },
+  "stack": {
+    "eyebrow": "Stack",
+    "title": "Tools I have used in shipped or running work.",
+    "note": "Grouped by where I use them. No ratings: the cases above are the evidence.",
+    "groups": [
+      {
+        "title": "Backend & APIs",
+        "items": [
+          "TypeScript",
+          "Node.js",
+          "C# / .NET",
+          "Python",
+          "REST APIs",
+          "Webhooks",
+          "Authentication & RBAC"
+        ]
+      },
+      {
+        "title": "Data & Databases",
+        "items": [
+          "SQL Server",
+          "PostgreSQL",
+          "Prisma",
+          "Pervasive / Actian (ODBC)",
+          "Data validation & migration"
+        ]
+      },
+      {
+        "title": "Frontend & Desktop",
+        "items": [
+          "React",
+          "Next.js",
+          "Electron",
+          "WinForms",
+          "PySide6",
+          "Progressive Web Apps"
+        ]
+      },
+      {
+        "title": "Infrastructure & Practices",
+        "items": [
+          "Networks & IP planning",
+          "Backups & recovery",
+          "Windows workstations & servers",
+          "Git & GitHub",
+          "Hexagonal architecture",
+          "Release smoke tests",
+          "Odoo Community"
+        ]
+      }
+    ]
+  },
+  "contact": {
+    "eyebrow": "Contact",
+    "title": "Let's talk about the system you need built.",
+    "text": "I'm open to conversations about software engineering roles and projects in backend, enterprise systems and integrations. The fastest way to reach me is through GitHub.",
+    "github": "github.com/lilpne25-ui",
+    "resume": "Download resume (PDF)"
+  },
+  "footer": {
+    "note": "Designed and built by Ludwing Valdés Reyes with Next.js. Case studies use abstracted, fictional data.",
+    "top": "Back to top"
+  },
+  "notFound": {
+    "code": "404",
+    "title": "This page isn't part of the system.",
+    "text": "The address may be outdated or mistyped.",
+    "home": "Go to the homepage"
+  },
+  "resume": {
+    "file": "/resume/ludwing-valdes-reyes-resume-en.pdf",
+    "title": "Resume",
+    "selected": "Selected work",
+    "skills": "Skills",
+    "links": "Links"
+  }
+}

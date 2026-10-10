@@ -1,0 +1,31 @@
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+
+# build output
+/.next/
+/out/
+/build
+*.tsbuildinfo
+next-env.d.ts
+
+# env and secrets: never commit
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# logs and OS
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.DS_Store
+Thumbs.db
+
+# local tooling
+.vercel
+.idea
+.vscode/*
+!.vscode/extensions.json
