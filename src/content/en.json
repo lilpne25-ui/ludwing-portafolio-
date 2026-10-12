@@ -894,7 +894,92 @@
     "title": "Resume",
     "selected": "Selected work",
     "skills": "Skills",
-    "links": "Links"
+    "links": "Links",
+    "cv": {
+      "profileTitle": "Profile",
+      "profile": "Software engineer focused on backend, integrations and business systems. I turn manual processes into software that plant and office teams use every day, connected to the ERP, CAD and databases a company already runs. My CAD-to-ERP integration cut the time to load an assembly from 9 minutes to under 1.5.",
+      "experienceTitle": "Experience",
+      "experience": [
+        {
+          "org": "VLUX",
+          "role": "Co-founder · Technology & product (personal project)",
+          "period": "Aug 2026 – Present",
+          "points": [
+            "Lead technology for four business product lines: CRM, point of sale, industrial costing and quality management.",
+            "Design and build integrations with ERPs, CAD/PDM, legacy databases, messaging webhooks and devices."
+          ]
+        },
+        {
+          "org": "Industrial manufacturing company",
+          "role": "IT & Systems",
+          "period": "Sep 2024 – Aug 2026",
+          "points": [
+            "Automated BOM loading from CAD to the ERP: 9:08 → 1:28 min per assembly on 6 workstations, every write verified.",
+            "Built the attendance and overtime system that takes biometric clocks to SQL Server and delivers HR reports in their own template.",
+            "Owned support, networks, servers, backups and equipment maintenance in an ISO 9001 operation."
+          ]
+        }
+      ],
+      "skillsTitle": "Technical skills",
+      "skills": [
+        {
+          "label": "Languages",
+          "items": "Python, C# / .NET 8, TypeScript, SQL"
+        },
+        {
+          "label": "Backend & data",
+          "items": "Node.js, REST APIs, webhooks, SQL Server, PostgreSQL, Prisma, Pervasive PSQL"
+        },
+        {
+          "label": "Frontend & desktop",
+          "items": "React, Next.js, Electron, WinForms, PySide6 / Qt, PWA"
+        },
+        {
+          "label": "Integration & infra",
+          "items": "ERP, SolidWorks API / PDM, Odoo, networks, servers, backups, Git"
+        },
+        {
+          "label": "Quality",
+          "items": "pytest, Vitest, Playwright, ISO 9001 documentation support"
+        }
+      ],
+      "projectsTitle": "Selected projects",
+      "goalLabel": "Goal",
+      "didLabel": "My part",
+      "resultLabel": "Result",
+      "projects": [
+        {
+          "id": "cad-to-erp",
+          "title": "CAD-to-ERP integration",
+          "status": "In production",
+          "goal": "Remove the manual, error-prone BOM entry between engineering and the ERP.",
+          "did": "Designed and built the whole app, from reading SolidWorks/PDM to validated writes in the ERP and change emails.",
+          "result": "About 6× faster end to end (9:08 → 1:28), backed by 1,737 automated tests.",
+          "stack": "Python · C# / .NET 8 · SolidWorks API · SQL Server"
+        },
+        {
+          "id": "crm",
+          "title": "Commercial CRM",
+          "status": "In operation",
+          "goal": "One traceable flow from lead to quote, project and warranty for a B2B installer.",
+          "did": "Architecture and full-stack build: guided quoting, price catalog and an idempotent web-to-CRM intake.",
+          "result": "Web leads arrive on their own without duplicates, and no quote leaves without human review.",
+          "stack": "Next.js · TypeScript · Prisma · PostgreSQL"
+        },
+        {
+          "id": "attendance",
+          "title": "Attendance & overtime",
+          "status": "In operation",
+          "goal": "Stop HR from rebuilding clock data by hand every period.",
+          "did": "Layered .NET 8 solution: clock sync to SQL Server and a rules engine for hours and overtime.",
+          "result": "HR gets period reports in Excel and PDF, in their own template.",
+          "stack": "C# · .NET 8 · SQL Server · ZKTeco SDK"
+        }
+      ],
+      "more": "Also: ISO 9001 quality management system (demo), real-estate operations prototype and a point of sale on Odoo (pilot candidate). Full breakdown in the portfolio.",
+      "educationTitle": "Education & certifications",
+      "education": []
+    }
   },
   "impact": {
     "eyebrow": "Impact, measured",

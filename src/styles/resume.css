@@ -29,10 +29,16 @@ html:has(.cv), html:has(.cv) body { background: #fff; color-scheme: light; }
 .cv-skills div { display: grid; grid-template-columns: 170px 1fr; gap: 12px; }
 .cv-skills dt { font-weight: 600; }
 .cv-skills dd { margin: 0; color: var(--cv-ink-2); }
+.cv-case { display: grid; gap: 1px; margin: 3px 0 0; }
+.cv-case div { display: grid; grid-template-columns: 74px 1fr; gap: 10px; }
+.cv-case dt { font-family: var(--font-mono); font-size: 7.6pt; text-transform: uppercase; letter-spacing: 0.06em; color: var(--cv-muted); padding-top: 1.5px; }
+.cv-case dd { margin: 0; color: var(--cv-ink-2); }
+.cv-more { margin-top: 4px; color: var(--cv-ink-2); font-size: 9.3pt; }
+.cv-summary { margin-top: 0; }
 @media (max-width: 640px) {
   .cv { padding: 32px 16px; }
   .cv-links { text-align: left; }
-  .cv-skills div { grid-template-columns: 1fr; gap: 0; }
+  .cv-skills div, .cv-case div { grid-template-columns: 1fr; gap: 0; }
 }
 @media print {
   @page { size: Letter; margin: 12mm 13mm; }

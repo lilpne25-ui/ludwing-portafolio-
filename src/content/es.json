@@ -894,7 +894,92 @@
     "title": "Currículum",
     "selected": "Trabajo seleccionado",
     "skills": "Habilidades",
-    "links": "Enlaces"
+    "links": "Enlaces",
+    "cv": {
+      "profileTitle": "Perfil",
+      "profile": "Ingeniero de software enfocado en backend, integraciones y sistemas empresariales. Convierto procesos manuales en software que los equipos de planta y oficina usan todos los días, conectado a los ERP, CAD y bases de datos que la empresa ya tiene. Mi integración CAD → ERP bajó la carga de cada ensamble de 9 minutos a menos de 1.5.",
+      "experienceTitle": "Experiencia",
+      "experience": [
+        {
+          "org": "VLUX",
+          "role": "Cofundador · Tecnología y producto (proyecto personal)",
+          "period": "Ago 2026 – Actualidad",
+          "points": [
+            "Dirijo la tecnología de cuatro líneas de producto empresarial: CRM, punto de venta, costos industriales y gestión de calidad.",
+            "Diseño y desarrollo integraciones con ERP, CAD/PDM, bases heredadas, webhooks de mensajería y dispositivos."
+          ]
+        },
+        {
+          "org": "Empresa de manufactura industrial",
+          "role": "TI y Sistemas",
+          "period": "Sep 2024 – Ago 2026",
+          "points": [
+            "Automaticé la carga de listas de materiales de CAD al ERP: de 9:08 a 1:28 min por ensamble en 6 estaciones, con cada escritura verificada.",
+            "Construí el sistema de asistencia y horas extra que lleva los relojes biométricos a SQL Server y entrega a RH sus reportes en su plantilla.",
+            "Responsable de soporte, redes, servidores, respaldos y mantenimiento de equipos en una operación bajo ISO 9001."
+          ]
+        }
+      ],
+      "skillsTitle": "Competencias técnicas",
+      "skills": [
+        {
+          "label": "Lenguajes",
+          "items": "Python, C# / .NET 8, TypeScript, SQL"
+        },
+        {
+          "label": "Backend y datos",
+          "items": "Node.js, APIs REST, webhooks, SQL Server, PostgreSQL, Prisma, Pervasive PSQL"
+        },
+        {
+          "label": "Frontend y escritorio",
+          "items": "React, Next.js, Electron, WinForms, PySide6 / Qt, PWA"
+        },
+        {
+          "label": "Integración e infra",
+          "items": "ERP, SolidWorks API / PDM, Odoo, redes, servidores, respaldos, Git"
+        },
+        {
+          "label": "Calidad",
+          "items": "pytest, Vitest, Playwright, apoyo documental ISO 9001"
+        }
+      ],
+      "projectsTitle": "Proyectos destacados",
+      "goalLabel": "Objetivo",
+      "didLabel": "Mi parte",
+      "resultLabel": "Resultado",
+      "projects": [
+        {
+          "id": "cad-to-erp",
+          "title": "Integración CAD → ERP",
+          "status": "En producción",
+          "goal": "Eliminar la captura manual y propensa a errores de listas de materiales entre ingeniería y el ERP.",
+          "did": "Diseñé y construí la aplicación completa, de la lectura de SolidWorks/PDM a la escritura validada en el ERP y los avisos de cambios.",
+          "result": "Unas 6 veces más rápido de punta a punta (9:08 → 1:28), respaldado por 1,737 pruebas automatizadas.",
+          "stack": "Python · C# / .NET 8 · SolidWorks API · SQL Server"
+        },
+        {
+          "id": "crm",
+          "title": "CRM comercial",
+          "status": "En operación",
+          "goal": "Un solo flujo trazable de prospecto a cotización, proyecto y garantía para un instalador B2B.",
+          "did": "Arquitectura y desarrollo full-stack: cotizador guiado, catálogo de precios y entrada web → CRM idempotente.",
+          "result": "Los prospectos web entran solos y sin duplicados, y ninguna cotización sale sin revisión de una persona.",
+          "stack": "Next.js · TypeScript · Prisma · PostgreSQL"
+        },
+        {
+          "id": "attendance",
+          "title": "Asistencia y horas extra",
+          "status": "En operación",
+          "goal": "Que RH deje de rehacer a mano los datos del reloj cada periodo.",
+          "did": "Solución .NET 8 por capas: sincronización de relojes a SQL Server y motor de reglas de horas y horas extra.",
+          "result": "RH recibe sus reportes por periodo en Excel y PDF, en su propia plantilla.",
+          "stack": "C# · .NET 8 · SQL Server · ZKTeco SDK"
+        }
+      ],
+      "more": "También: sistema de gestión de calidad ISO 9001 (demo), prototipo de operación inmobiliaria y punto de venta en Odoo (candidato a piloto). Desglose completo en el portafolio.",
+      "educationTitle": "Formación y certificaciones",
+      "education": []
+    }
   },
   "impact": {
     "eyebrow": "Impacto medido",
