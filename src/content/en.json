@@ -927,20 +927,28 @@
           "items": "Python, C# / .NET 8, TypeScript, SQL"
         },
         {
-          "label": "Backend & data",
-          "items": "Node.js, REST APIs, webhooks, SQL Server, PostgreSQL, Prisma, Pervasive PSQL"
+          "label": "Applied AI",
+          "items": "AI to speed up real systems: automating flows, analyzing data and accelerating development"
+        },
+        {
+          "label": "Backend & cloud",
+          "items": "Node.js, REST APIs, webhooks, Supabase, Cloudflare, Vercel deployments"
+        },
+        {
+          "label": "Data",
+          "items": "SQL Server, PostgreSQL, Pervasive PSQL, Prisma; Excel data cleanup and material standardization"
+        },
+        {
+          "label": "ERP & CAD",
+          "items": "Global Shop, Odoo Community (custom add-ons); SolidWorks and AutoCAD APIs to generate BOMs"
         },
         {
           "label": "Frontend & desktop",
           "items": "React, Next.js, Electron, WinForms, PySide6 / Qt, PWA"
         },
         {
-          "label": "Integration & infra",
-          "items": "ERP, SolidWorks API / PDM, Odoo, networks, servers, backups, Git"
-        },
-        {
-          "label": "Quality",
-          "items": "pytest, Vitest, Playwright, ISO 9001 documentation support"
+          "label": "Infra & quality",
+          "items": "Networks, servers, backups, Git; pytest, Vitest, Playwright; ISO 9001 support"
         }
       ],
       "projectsTitle": "Selected projects",
@@ -962,7 +970,7 @@
           "title": "Commercial CRM",
           "status": "In operation",
           "goal": "One traceable flow from lead to quote, project and warranty for a B2B installer.",
-          "did": "Architecture and full-stack build: guided quoting, price catalog and an idempotent web-to-CRM intake.",
+          "did": "Architecture and full-stack build: guided quoting, price catalog, idempotent web intake.",
           "result": "Web leads arrive on their own without duplicates, and no quote leaves without human review.",
           "stack": "Next.js · TypeScript · Prisma · PostgreSQL"
         },
@@ -971,7 +979,7 @@
           "title": "Attendance & overtime",
           "status": "In operation",
           "goal": "Stop HR from rebuilding clock data by hand every period.",
-          "did": "Layered .NET 8 solution: clock sync to SQL Server and a rules engine for hours and overtime.",
+          "did": "Layered .NET 8 solution: clock sync to SQL Server and an overtime rules engine.",
           "result": "HR gets period reports in Excel and PDF, in their own template.",
           "stack": "C# · .NET 8 · SQL Server · ZKTeco SDK"
         }

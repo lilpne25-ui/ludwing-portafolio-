@@ -927,20 +927,28 @@
           "items": "Python, C# / .NET 8, TypeScript, SQL"
         },
         {
-          "label": "Backend y datos",
-          "items": "Node.js, APIs REST, webhooks, SQL Server, PostgreSQL, Prisma, Pervasive PSQL"
+          "label": "IA aplicada",
+          "items": "IA para hacer más eficientes sistemas reales: automatizar flujos, analizar datos y acelerar el desarrollo"
+        },
+        {
+          "label": "Backend y nube",
+          "items": "Node.js, APIs REST, webhooks, Supabase, Cloudflare, despliegues en Vercel"
+        },
+        {
+          "label": "Datos",
+          "items": "SQL Server, PostgreSQL, Pervasive PSQL, Prisma; limpieza de datos en Excel y estandarización de materiales"
+        },
+        {
+          "label": "ERP y CAD",
+          "items": "Global Shop, Odoo Community (add-ons propios); APIs de SolidWorks y AutoCAD para generar LDM"
         },
         {
           "label": "Frontend y escritorio",
           "items": "React, Next.js, Electron, WinForms, PySide6 / Qt, PWA"
         },
         {
-          "label": "Integración e infra",
-          "items": "ERP, SolidWorks API / PDM, Odoo, redes, servidores, respaldos, Git"
-        },
-        {
-          "label": "Calidad",
-          "items": "pytest, Vitest, Playwright, apoyo documental ISO 9001"
+          "label": "Infra y calidad",
+          "items": "Redes, servidores, respaldos, Git; pytest, Vitest, Playwright; apoyo ISO 9001"
         }
       ],
       "projectsTitle": "Proyectos destacados",
@@ -962,7 +970,7 @@
           "title": "CRM comercial",
           "status": "En operación",
           "goal": "Un solo flujo trazable de prospecto a cotización, proyecto y garantía para un instalador B2B.",
-          "did": "Arquitectura y desarrollo full-stack: cotizador guiado, catálogo de precios y entrada web → CRM idempotente.",
+          "did": "Arquitectura y desarrollo full-stack: cotizador guiado, catálogo y entrada web idempotente.",
           "result": "Los prospectos web entran solos y sin duplicados, y ninguna cotización sale sin revisión de una persona.",
           "stack": "Next.js · TypeScript · Prisma · PostgreSQL"
         },
@@ -971,7 +979,7 @@
           "title": "Asistencia y horas extra",
           "status": "En operación",
           "goal": "Que RH deje de rehacer a mano los datos del reloj cada periodo.",
-          "did": "Solución .NET 8 por capas: sincronización de relojes a SQL Server y motor de reglas de horas y horas extra.",
+          "did": "Solución .NET 8 por capas: sincronización a SQL Server y reglas de horas extra.",
           "result": "RH recibe sus reportes por periodo en Excel y PDF, en su propia plantilla.",
           "stack": "C# · .NET 8 · SQL Server · ZKTeco SDK"
         }
