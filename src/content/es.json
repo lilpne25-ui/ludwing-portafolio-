@@ -720,9 +720,9 @@
     "items": [
       {
         "org": "VLUX",
-        "role": "Cofundador · Tecnología y desarrollo de producto",
-        "period": null,
-        "summary": "Dirección tecnológica y desarrollo directo en una iniciativa que construye software empresarial para operaciones industriales y comerciales.",
+        "role": "Cofundador · Tecnología y producto (proyecto personal)",
+        "period": "Ago 2026 – Actualidad",
+        "summary": "VLUX también es mi proyecto personal: dirijo la tecnología y construyo, con las manos en el código, software empresarial para operaciones industriales y comerciales.",
         "points": [
           "Arquitectura y desarrollo en cuatro líneas de producto: CRM, punto de venta, costos industriales y gestión de calidad.",
           "Integraciones con ERP, CAD/PDM, bases heredadas, webhooks de mensajería y dispositivos.",
@@ -732,7 +732,7 @@
       {
         "org": "Empresa de manufactura industrial",
         "role": "TI y Sistemas",
-        "period": null,
+        "period": "Sep 2024 – Ago 2026",
         "summary": "Soporte tecnológico e infraestructura para una operación de manufactura que trabaja bajo ISO 9001.",
         "points": [
           "Diseñó, construyó y opera la integración CAD → ERP que usan ingeniería y logística en 6 estaciones (ver el primer caso).",
@@ -753,46 +753,121 @@
       {
         "title": "Backend y APIs",
         "items": [
-          "TypeScript",
-          "Node.js",
-          "C# / .NET",
-          "Python",
-          "APIs REST",
-          "Webhooks",
-          "Autenticación y RBAC"
+          {
+            "name": "TypeScript",
+            "icon": "typescript"
+          },
+          {
+            "name": "Node.js",
+            "icon": "nodejs"
+          },
+          {
+            "name": "C# / .NET",
+            "icon": "csharp"
+          },
+          {
+            "name": "Python",
+            "icon": "python"
+          },
+          {
+            "name": "APIs REST",
+            "icon": "api"
+          },
+          {
+            "name": "Webhooks",
+            "icon": "webhook"
+          },
+          {
+            "name": "Autenticación y RBAC",
+            "icon": "shield"
+          }
         ]
       },
       {
         "title": "Datos y bases de datos",
         "items": [
-          "SQL Server",
-          "PostgreSQL",
-          "Prisma",
-          "Pervasive / Actian (ODBC)",
-          "Validación y migración de datos"
+          {
+            "name": "SQL Server",
+            "icon": "sqlserver"
+          },
+          {
+            "name": "PostgreSQL",
+            "icon": "postgresql"
+          },
+          {
+            "name": "Prisma",
+            "icon": "prisma"
+          },
+          {
+            "name": "Pervasive / Actian (ODBC)",
+            "icon": "pervasive"
+          },
+          {
+            "name": "Validación y migración de datos",
+            "icon": "check"
+          }
         ]
       },
       {
         "title": "Frontend y escritorio",
         "items": [
-          "React",
-          "Next.js",
-          "Electron",
-          "WinForms",
-          "PySide6",
-          "Progressive Web Apps"
+          {
+            "name": "React",
+            "icon": "react"
+          },
+          {
+            "name": "Next.js",
+            "icon": "nextjs"
+          },
+          {
+            "name": "Electron",
+            "icon": "electron"
+          },
+          {
+            "name": "WinForms",
+            "icon": "window"
+          },
+          {
+            "name": "PySide6",
+            "icon": "qt"
+          },
+          {
+            "name": "Progressive Web Apps",
+            "icon": "pwa"
+          }
         ]
       },
       {
         "title": "Infraestructura y prácticas",
         "items": [
-          "Redes y plan de IPs",
-          "Respaldos y recuperación",
-          "Estaciones y servidores Windows",
-          "Git y GitHub",
-          "Arquitectura hexagonal",
-          "Smoke tests de release",
-          "Odoo Community"
+          {
+            "name": "Redes y plan de IPs",
+            "icon": "network"
+          },
+          {
+            "name": "Respaldos y recuperación",
+            "icon": "backup"
+          },
+          {
+            "name": "Estaciones y servidores Windows",
+            "icon": "server"
+          },
+          {
+            "name": "Git y GitHub",
+            "icon": "git"
+          },
+          {
+            "name": "Arquitectura hexagonal",
+            "icon": "hexagon"
+          },
+          {
+            "name": "Smoke tests de release",
+            "icon": "flask"
+          },
+          {
+            "name": "Odoo Community",
+            "icon": "odoo"
+          }
         ]
       }
     ]

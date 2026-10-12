@@ -6,6 +6,7 @@ import { Header } from "@/components/Header";
 import { ArrowIcon, DownloadIcon, GitHubIcon } from "@/components/icons";
 import { Reveal } from "@/components/Reveal";
 import { Signal } from "@/components/Signal";
+import { ToolIcon } from "@/components/ToolIcon";
 import { getDictionary, isLocale, otherLocale } from "@/lib/i18n";
 import { site, siteUrl } from "@/lib/site";
 
@@ -29,7 +30,7 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
     url: new URL(`/${lang}`, siteUrl()).toString(),
     sameAs: [site.github],
     nationality: "Mexico",
-    knowsAbout: t.stack.groups.flatMap((g) => g.items).slice(0, 12),
+    knowsAbout: t.stack.groups.flatMap((g) => g.items.map((i) => i.name)).slice(0, 12),
   };
 
   return (
@@ -231,7 +232,10 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
                   <h3>{g.title}</h3>
                   <ul>
                     {g.items.map((i) => (
-                      <li key={i}>{i}</li>
+                      <li key={i.name}>
+                        <ToolIcon icon={i.icon} />
+                        <span>{i.name}</span>
+                      </li>
                     ))}
                   </ul>
                 </div>

@@ -720,9 +720,9 @@
     "items": [
       {
         "org": "VLUX",
-        "role": "Co-founder · Technology & product development",
-        "period": null,
-        "summary": "Technology direction and hands-on development for an initiative that builds business software for industrial and commercial operations.",
+        "role": "Co-founder · Technology & product (personal project)",
+        "period": "Aug 2026 – Present",
+        "summary": "VLUX is also my personal project: I lead its technology and build, hands-on, business software for industrial and commercial operations.",
         "points": [
           "Architecture and development across four product lines: CRM, point of sale, industrial costing and quality management.",
           "Integrations with ERPs, CAD/PDM, legacy databases, messaging webhooks and devices.",
@@ -732,7 +732,7 @@
       {
         "org": "Industrial manufacturing company",
         "role": "IT & Systems",
-        "period": null,
+        "period": "Sep 2024 – Aug 2026",
         "summary": "Technology support and infrastructure for a manufacturing operation working under ISO 9001.",
         "points": [
           "Designed, built and runs the CAD-to-ERP integration used by engineering and logistics on 6 workstations (see the first case).",
@@ -753,46 +753,121 @@
       {
         "title": "Backend & APIs",
         "items": [
-          "TypeScript",
-          "Node.js",
-          "C# / .NET",
-          "Python",
-          "REST APIs",
-          "Webhooks",
-          "Authentication & RBAC"
+          {
+            "name": "TypeScript",
+            "icon": "typescript"
+          },
+          {
+            "name": "Node.js",
+            "icon": "nodejs"
+          },
+          {
+            "name": "C# / .NET",
+            "icon": "csharp"
+          },
+          {
+            "name": "Python",
+            "icon": "python"
+          },
+          {
+            "name": "REST APIs",
+            "icon": "api"
+          },
+          {
+            "name": "Webhooks",
+            "icon": "webhook"
+          },
+          {
+            "name": "Authentication & RBAC",
+            "icon": "shield"
+          }
         ]
       },
       {
         "title": "Data & Databases",
         "items": [
-          "SQL Server",
-          "PostgreSQL",
-          "Prisma",
-          "Pervasive / Actian (ODBC)",
-          "Data validation & migration"
+          {
+            "name": "SQL Server",
+            "icon": "sqlserver"
+          },
+          {
+            "name": "PostgreSQL",
+            "icon": "postgresql"
+          },
+          {
+            "name": "Prisma",
+            "icon": "prisma"
+          },
+          {
+            "name": "Pervasive / Actian (ODBC)",
+            "icon": "pervasive"
+          },
+          {
+            "name": "Data validation & migration",
+            "icon": "check"
+          }
         ]
       },
       {
         "title": "Frontend & Desktop",
         "items": [
-          "React",
-          "Next.js",
-          "Electron",
-          "WinForms",
-          "PySide6",
-          "Progressive Web Apps"
+          {
+            "name": "React",
+            "icon": "react"
+          },
+          {
+            "name": "Next.js",
+            "icon": "nextjs"
+          },
+          {
+            "name": "Electron",
+            "icon": "electron"
+          },
+          {
+            "name": "WinForms",
+            "icon": "window"
+          },
+          {
+            "name": "PySide6",
+            "icon": "qt"
+          },
+          {
+            "name": "Progressive Web Apps",
+            "icon": "pwa"
+          }
         ]
       },
       {
         "title": "Infrastructure & Practices",
         "items": [
-          "Networks & IP planning",
-          "Backups & recovery",
-          "Windows workstations & servers",
-          "Git & GitHub",
-          "Hexagonal architecture",
-          "Release smoke tests",
-          "Odoo Community"
+          {
+            "name": "Networks & IP planning",
+            "icon": "network"
+          },
+          {
+            "name": "Backups & recovery",
+            "icon": "backup"
+          },
+          {
+            "name": "Windows workstations & servers",
+            "icon": "server"
+          },
+          {
+            "name": "Git & GitHub",
+            "icon": "git"
+          },
+          {
+            "name": "Hexagonal architecture",
+            "icon": "hexagon"
+          },
+          {
+            "name": "Release smoke tests",
+            "icon": "flask"
+          },
+          {
+            "name": "Odoo Community",
+            "icon": "odoo"
+          }
         ]
       }
     ]

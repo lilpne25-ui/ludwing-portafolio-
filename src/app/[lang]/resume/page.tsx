@@ -88,7 +88,7 @@ export default async function ResumePage({ params }: { params: Promise<{ lang: s
           {t.stack.groups.map((g) => (
             <div key={g.title}>
               <dt>{g.title}</dt>
-              <dd>{g.items.join(", ")}</dd>
+              <dd>{g.items.map((i) => i.name).join(", ")}</dd>
             </div>
           ))}
         </dl>

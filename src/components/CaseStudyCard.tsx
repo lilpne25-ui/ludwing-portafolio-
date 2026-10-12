@@ -23,9 +23,16 @@ export function CaseStudyCard({ c, L }: { c: CaseStudy; L: Labels }) {
   const [open, setOpen] = useState(false);
   const detailId = useId();
   const titleId = `case-title-${c.id}`;
+  const [cover, ...rest] = c.gallery;
 
   return (
     <article className="case" id={`case-${c.id}`} aria-labelledby={titleId}>
+      {cover ? (
+        <a className="case-cover" href={cover.src} target="_blank" rel="noopener">
+          <Image src={cover.src} alt={cover.alt} width={cover.w} height={cover.h} sizes="(max-width: 1240px) 100vw, 1200px" />
+          <span className="cover-cap">{cover.caption}</span>
+        </a>
+      ) : null}
       <div className="case-top">
         <div className="case-intro">
           <span className="eyebrow">{c.kicker}</span>
@@ -112,14 +119,14 @@ export function CaseStudyCard({ c, L }: { c: CaseStudy; L: Labels }) {
         </div>
       ) : null}
 
-      {c.gallery.length > 0 ? (
+      {rest.length > 0 ? (
         <div className="gallery">
           <div className="gallery-head">
             <span className="eyebrow">{L.gallery}</span>
             <span className="gallery-note">{c.galleryDemo ? L.galleryNoteDemo : L.galleryNote}</span>
           </div>
-          <div className="shots" data-count={c.gallery.length}>
-            {c.gallery.map((g) => (
+          <div className="shots" data-count={rest.length}>
+            {rest.map((g) => (
               <figure className="shot" key={g.src}>
                 <a className="frame" href={g.src} target="_blank" rel="noopener">
                   <span className="frame-bar" aria-hidden="true">
