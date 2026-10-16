@@ -29,6 +29,8 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
     jobTitle: lang === "en" ? "Software Engineer" : "Ingeniero de Software",
     url: new URL(`/${lang}`, siteUrl()).toString(),
     sameAs: [site.github],
+    ...(site.email ? { email: `mailto:${site.email}` } : {}),
+    ...(site.phone ? { telephone: site.phone.tel } : {}),
     nationality: "Mexico",
     knowsAbout: t.stack.groups.flatMap((g) => g.items.map((i) => i.name)).slice(0, 12),
   };
@@ -257,6 +259,11 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
               {site.email ? (
                 <a className="btn" href={`mailto:${site.email}`}>
                   {site.email}
+                </a>
+              ) : null}
+              {site.phone ? (
+                <a className="btn" href={`tel:${site.phone.tel}`}>
+                  {site.phone.display}
                 </a>
               ) : null}
               <a className="btn" href={resumeHref} download>

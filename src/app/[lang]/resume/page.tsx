@@ -30,7 +30,16 @@ export default async function ResumePage({ params }: { params: Promise<{ lang: s
           <li>
             <a href={site.github}>github.com/lilpne25-ui</a>
           </li>
-          {site.email ? <li>{site.email}</li> : null}
+          {site.email ? (
+            <li>
+              <a href={`mailto:${site.email}`}>{site.email}</a>
+            </li>
+          ) : null}
+          {site.phone ? (
+            <li>
+              <a href={`tel:${site.phone.tel}`}>{site.phone.display}</a>
+            </li>
+          ) : null}
           <li>{t.hero.facts[2]?.value}</li>
           <li className="cv-screen-only">
             <a href={t.resume.file} download>

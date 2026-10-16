@@ -1,8 +1,9 @@
 export const site = {
   name: "Ludwing Valdés Reyes",
   github: "https://github.com/lilpne25-ui",
-  // Set only after the address is confirmed for public use. Null hides it everywhere.
-  email: null as string | null,
+  // Confirmed by Ludwing for public use. Null hides either one everywhere.
+  email: "ludwingvaldes442@gmail.com" as string | null,
+  phone: { display: "+52 442 975 0295", tel: "+524429750295" } as { display: string; tel: string } | null,
 };
 
 export function siteUrl(): URL {
