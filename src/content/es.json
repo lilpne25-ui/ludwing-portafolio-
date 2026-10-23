@@ -896,9 +896,9 @@
     "skills": "Habilidades",
     "links": "Enlaces",
     "cv": {
-      "profileTitle": "Perfil",
-      "profile": "Ingeniero de software enfocado en backend, integraciones y sistemas empresariales. Convierto procesos manuales en software que los equipos de planta y oficina usan todos los días, conectado a los ERP, CAD y bases de datos que la empresa ya tiene. Mi integración CAD → ERP bajó la carga de cada ensamble de 9 minutos a menos de 1.5.",
-      "experienceTitle": "Experiencia",
+      "profileTitle": "Perfil profesional",
+      "profile": "Ingeniero de software enfocado en backend, integraciones y sistemas empresariales. Convierto procesos manuales en software que los equipos de planta y oficina usan todos los días, conectado a los ERP, CAD y bases de datos que la empresa ya tiene. Mi integración CAD a ERP bajó la carga de cada ensamble de 9 minutos a menos de 1.5.",
+      "experienceTitle": "Experiencia laboral",
       "experience": [
         {
           "org": "VLUX",
@@ -910,7 +910,7 @@
           ]
         },
         {
-          "org": "Empresa de manufactura industrial",
+          "org": "Innovax",
           "role": "TI y Sistemas",
           "period": "Sep 2024 – Ago 2026",
           "points": [
@@ -920,7 +920,7 @@
           ]
         }
       ],
-      "skillsTitle": "Competencias técnicas",
+      "skillsTitle": "Habilidades técnicas",
       "skills": [
         {
           "label": "Lenguajes",
@@ -958,11 +958,11 @@
       "projects": [
         {
           "id": "cad-to-erp",
-          "title": "Integración CAD → ERP",
+          "title": "Integración CAD a ERP",
           "status": "En producción",
           "goal": "Eliminar la captura manual y propensa a errores de listas de materiales entre ingeniería y el ERP.",
           "did": "Diseñé y construí la aplicación completa, de la lectura de SolidWorks/PDM a la escritura validada en el ERP y los avisos de cambios.",
-          "result": "Unas 6 veces más rápido de punta a punta (9:08 → 1:28), respaldado por 1,737 pruebas automatizadas.",
+          "result": "Unas 6 veces más rápido de punta a punta (9:08 a 1:28), respaldado por 1,737 pruebas automatizadas.",
           "stack": "Python · C# / .NET 8 · SolidWorks API · SQL Server"
         },
         {
@@ -986,7 +986,11 @@
       ],
       "more": "También: sistema de gestión de calidad ISO 9001 (demo), prototipo de operación inmobiliaria y punto de venta en Odoo (candidato a piloto). Desglose completo en el portafolio.",
       "educationTitle": "Formación y certificaciones",
-      "education": []
+      "education": [],
+      "portfolioTitle": "Portafolio",
+      "portfolioText": "Casos con capturas, métricas y detalle técnico:",
+      "stackLabel": "Tecnologías",
+      "portfolioUrl": "https://claude.ai/artifact/HUhWRnU9yRW2mFfuPD88b3"
     }
   },
   "impact": {

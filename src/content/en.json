@@ -896,9 +896,9 @@
     "skills": "Skills",
     "links": "Links",
     "cv": {
-      "profileTitle": "Profile",
+      "profileTitle": "Professional summary",
       "profile": "Software engineer focused on backend, integrations and business systems. I turn manual processes into software that plant and office teams use every day, connected to the ERP, CAD and databases a company already runs. My CAD-to-ERP integration cut the time to load an assembly from 9 minutes to under 1.5.",
-      "experienceTitle": "Experience",
+      "experienceTitle": "Work experience",
       "experience": [
         {
           "org": "VLUX",
@@ -910,11 +910,11 @@
           ]
         },
         {
-          "org": "Industrial manufacturing company",
+          "org": "Innovax",
           "role": "IT & Systems",
           "period": "Sep 2024 – Aug 2026",
           "points": [
-            "Automated BOM loading from CAD to the ERP: 9:08 → 1:28 min per assembly on 6 workstations, every write verified.",
+            "Automated BOM loading from CAD to the ERP: 9:08 a 1:28 min per assembly on 6 workstations, every write verified.",
             "Built the attendance and overtime system that takes biometric clocks to SQL Server and delivers HR reports in their own template.",
             "Owned support, networks, servers, backups and equipment maintenance in an ISO 9001 operation."
           ]
@@ -962,7 +962,7 @@
           "status": "In production",
           "goal": "Remove the manual, error-prone BOM entry between engineering and the ERP.",
           "did": "Designed and built the whole app, from reading SolidWorks/PDM to validated writes in the ERP and change emails.",
-          "result": "About 6× faster end to end (9:08 → 1:28), backed by 1,737 automated tests.",
+          "result": "About 6× faster end to end (9:08 a 1:28), backed by 1,737 automated tests.",
           "stack": "Python · C# / .NET 8 · SolidWorks API · SQL Server"
         },
         {
@@ -986,7 +986,11 @@
       ],
       "more": "Also: ISO 9001 quality management system (demo), real-estate operations prototype and a point of sale on Odoo (pilot candidate). Full breakdown in the portfolio.",
       "educationTitle": "Education & certifications",
-      "education": []
+      "education": [],
+      "portfolioTitle": "Portfolio",
+      "portfolioText": "Case studies with screenshots, metrics and technical detail:",
+      "stackLabel": "Technologies",
+      "portfolioUrl": "https://claude.ai/artifact/HUhWRnU9yRW2mFfuPD88b3"
     }
   },
   "impact": {

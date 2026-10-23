@@ -12,59 +12,49 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   return { title: t.resume.title, alternates: { canonical: `/${lang}/resume`, languages: { en: "/en/resume", es: "/es/resume" } } };
 }
 
-/** Printable one-page resume: hierarchy over detail; the portfolio carries the full breakdown. The PDFs in /public/resume are generated from this page (npm run resume:pdf). */
+/**
+ * Printable one-page resume, laid out for applicant tracking systems: one column, standard section
+ * headings, plain-text contact details and labels, no tables or side-by-side columns. The portfolio
+ * carries the full breakdown. The PDFs in /public/resume are generated from this page (npm run resume:pdf).
+ */
 export default async function ResumePage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
   if (!isLocale(lang)) notFound();
   const t = getDictionary(lang as Locale);
   const cv = t.resume.cv;
+  const contact = [site.email, site.phone?.display, t.hero.facts[2]?.value].filter(Boolean).join(" | ");
 
   return (
     <main className="cv">
       <header className="cv-head">
-        <div>
-          <h1>{site.name}</h1>
-          <p className="cv-role">{t.hero.eyebrow}</p>
-        </div>
-        <ul className="cv-links">
-          <li>
-            <a href={site.github}>github.com/lilpne25-ui</a>
-          </li>
-          {site.email ? (
-            <li>
-              <a href={`mailto:${site.email}`}>{site.email}</a>
-            </li>
-          ) : null}
-          {site.phone ? (
-            <li>
-              <a href={`tel:${site.phone.tel}`}>{site.phone.display}</a>
-            </li>
-          ) : null}
-          <li>{t.hero.facts[2]?.value}</li>
-          <li className="cv-screen-only">
-            <a href={t.resume.file} download>
-              PDF
-            </a>{" "}
-            · <Link href={`/${lang}`}>{lang === "en" ? "Portfolio" : "Portafolio"}</Link>
-          </li>
-        </ul>
+        <h1>{site.name}</h1>
+        <p className="cv-role">{t.hero.eyebrow}</p>
+        <p className="cv-contact">{contact}</p>
+        <p className="cv-contact">
+          {cv.portfolioTitle}: <a href={cv.portfolioUrl}>{cv.portfolioUrl}</a> | GitHub:{" "}
+          <a href={site.github}>{site.github}</a>
+        </p>
+        <p className="cv-screen-only">
+          <a href={t.resume.file} download>
+            PDF
+          </a>{" "}
+          · <Link href={`/${lang}`}>{lang === "en" ? "Site" : "Sitio"}</Link>
+        </p>
       </header>
 
       <section>
         <h2>{cv.profileTitle}</h2>
-        <p className="cv-summary">{cv.profile}</p>
+        <p>{cv.profile}</p>
       </section>
 
       <section>
         <h2>{cv.experienceTitle}</h2>
         {cv.experience.map((r) => (
           <div className="cv-item" key={r.org}>
-            <div className="cv-item-head">
-              <h3>
-                {r.org} <span>· {r.role}</span>
-              </h3>
-              <span className="cv-period">{r.period}</span>
-            </div>
+            <h3>{r.role}</h3>
+            <p className="cv-meta">
+              {r.org} | {r.period}
+            </p>
             <ul>
               {r.points.map((p) => (
                 <li key={p}>{p}</li>
@@ -76,49 +66,50 @@ export default async function ResumePage({ params }: { params: Promise<{ lang: s
 
       <section>
         <h2>{cv.skillsTitle}</h2>
-        <dl className="cv-skills">
+        <ul className="cv-plain">
           {cv.skills.map((g) => (
-            <div key={g.label}>
-              <dt>{g.label}</dt>
-              <dd>{g.items}</dd>
-            </div>
+            <li key={g.label}>
+              <strong>{g.label}:</strong> {g.items}
+            </li>
           ))}
-        </dl>
+        </ul>
       </section>
 
       <section>
         <h2>{cv.projectsTitle}</h2>
         {cv.projects.map((c) => (
           <div className="cv-item" key={c.id}>
-            <div className="cv-item-head">
-              <h3>
-                {c.title} <span>· {c.stack}</span>
-              </h3>
-              <span className="cv-period">{c.status}</span>
-            </div>
-            <dl className="cv-case">
-              <div>
-                <dt>{cv.goalLabel}</dt>
-                <dd>{c.goal}</dd>
-              </div>
-              <div>
-                <dt>{cv.didLabel}</dt>
-                <dd>{c.did}</dd>
-              </div>
-              <div>
-                <dt>{cv.resultLabel}</dt>
-                <dd>{c.result}</dd>
-              </div>
-            </dl>
+            <h3>{c.title}</h3>
+            <p className="cv-meta">
+              {c.status} | {cv.stackLabel}: {c.stack.replaceAll(" · ", ", ")}
+            </p>
+            <ul>
+              <li>
+                <strong>{cv.goalLabel}:</strong> {c.goal}
+              </li>
+              <li>
+                <strong>{cv.didLabel}:</strong> {c.did}
+              </li>
+              <li>
+                <strong>{cv.resultLabel}:</strong> {c.result}
+              </li>
+            </ul>
           </div>
         ))}
-        <p className="cv-more">{cv.more}</p>
+        <p>{cv.more}</p>
+      </section>
+
+      <section>
+        <h2>{cv.portfolioTitle}</h2>
+        <p>
+          {cv.portfolioText} <a href={cv.portfolioUrl}>{cv.portfolioUrl}</a>
+        </p>
       </section>
 
       {cv.education.length > 0 ? (
         <section>
           <h2>{cv.educationTitle}</h2>
-          <ul className="cv-other">
+          <ul>
             {cv.education.map((e) => (
               <li key={e}>{e}</li>
             ))}

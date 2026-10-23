@@ -1,45 +1,28 @@
-/* Printable resume. Always light, sized for US Letter / A4. */
+/* Printable resume. Always light, one column, plain structure so applicant tracking systems read it in order. */
 .cv {
-  --cv-ink: #111418; --cv-ink-2: #3c434b; --cv-muted: #6a717a; --cv-line: #dcdfe3; --cv-accent: #23658f;
-  max-width: 820px; margin: 0 auto; padding: 48px 40px 56px; background: #fff; color: var(--cv-ink);
-  font-family: var(--font-sans); font-size: 9.5pt; line-height: 1.38;
+  --cv-ink: #111418; --cv-ink-2: #2f353c; --cv-muted: #5c636b; --cv-line: #d5d9de;
+  max-width: 820px; margin: 0 auto; padding: 44px 40px 52px; background: #fff; color: var(--cv-ink);
+  font-family: Arial, Helvetica, "Liberation Sans", sans-serif; font-size: 9.5pt; line-height: 1.33;
 }
 html:has(.cv), html:has(.cv) body { background: #fff; color-scheme: light; }
-.cv h1 { font-size: 24pt; letter-spacing: -0.03em; font-weight: 600; }
+.cv h1 { font-size: 20pt; font-weight: 700; letter-spacing: -0.01em; }
 .cv h2 {
-  font-family: var(--font-mono); font-size: 8pt; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em;
-  color: var(--cv-accent); border-bottom: 1px solid var(--cv-line); padding-bottom: 3px; margin: 11px 0 6px;
+  font-size: 10.5pt; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em;
+  border-bottom: 1px solid var(--cv-line); padding-bottom: 2px; margin: 10px 0 5px;
 }
-.cv h3 { font-size: 10.5pt; font-weight: 600; letter-spacing: -0.005em; }
-.cv h3 span { font-weight: 400; color: var(--cv-ink-2); }
-.cv a { color: var(--cv-ink); text-decoration: none; border-bottom: 1px solid var(--cv-line); }
-.cv-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 24px; align-items: flex-end; }
-.cv-role { color: var(--cv-ink-2); margin-top: 4px; }
-.cv-links { list-style: none; display: grid; gap: 2px; text-align: right; font-size: 9pt; color: var(--cv-ink-2); }
-.cv-summary { margin-top: 14px; color: var(--cv-ink-2); max-width: 70ch; }
-.cv-item { margin-bottom: 8px; break-inside: avoid; }
-.cv-item-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; }
-.cv-period { font-family: var(--font-mono); font-size: 8pt; color: var(--cv-muted); white-space: nowrap; }
-.cv-item p { color: var(--cv-ink-2); margin-top: 2px; }
-.cv-item ul, .cv-other { margin: 4px 0 0; padding-left: 16px; color: var(--cv-ink-2); }
-.cv-item li, .cv-other li { margin-bottom: 2px; }
-.cv-stack { font-family: var(--font-mono); font-size: 8pt; color: var(--cv-muted) !important; }
-.cv-other { font-size: 9.5pt; }
-.cv-skills { display: grid; gap: 4px; margin: 0; }
-.cv-skills div { display: grid; grid-template-columns: 170px 1fr; gap: 12px; }
-.cv-skills dt { font-weight: 600; }
-.cv-skills dd { margin: 0; color: var(--cv-ink-2); }
-.cv-case { display: grid; gap: 1px; margin: 3px 0 0; }
-.cv-case div { display: grid; grid-template-columns: 74px 1fr; gap: 10px; }
-.cv-case dt { font-family: var(--font-mono); font-size: 7.6pt; text-transform: uppercase; letter-spacing: 0.06em; color: var(--cv-muted); padding-top: 1.5px; }
-.cv-case dd { margin: 0; color: var(--cv-ink-2); }
-.cv-more { margin-top: 4px; color: var(--cv-ink-2); font-size: 9.3pt; }
-.cv-summary { margin-top: 0; }
-@media (max-width: 640px) {
-  .cv { padding: 32px 16px; }
-  .cv-links { text-align: left; }
-  .cv-skills div, .cv-case div { grid-template-columns: 1fr; gap: 0; }
-}
+.cv h3 { font-size: 10pt; font-weight: 700; }
+.cv p, .cv li { color: var(--cv-ink-2); }
+.cv a { color: var(--cv-ink); text-decoration: none; }
+.cv strong { color: var(--cv-ink); }
+.cv-role { font-size: 10.5pt; margin-top: 2px; color: var(--cv-ink) !important; }
+.cv-contact { margin-top: 2px; }
+.cv-item { margin-bottom: 6px; break-inside: avoid; }
+.cv-meta { color: var(--cv-muted) !important; }
+.cv ul { margin: 2px 0 0; padding-left: 16px; list-style: disc; }
+.cv li { margin-bottom: 1px; }
+.cv ul.cv-plain { list-style: none; padding-left: 0; }
+.cv-screen-only { margin-top: 6px; }
+@media (max-width: 640px) { .cv { padding: 32px 16px; } }
 @media print {
   @page { size: Letter; margin: 10mm 12mm; }
   .cv { padding: 0; max-width: none; }
